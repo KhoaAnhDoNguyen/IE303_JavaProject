@@ -6,8 +6,15 @@ CREATE TABLE Customer (
     Name VARCHAR(100),
     Email VARCHAR(100) UNIQUE,
     Password VARCHAR(255),
-    PhoneNumber VARCHAR(20)
+    phone_number VARCHAR(20)
 );
+select *from customer
+
+DELETE FROM customer where ID = "8" ;
+
+SELECT COUNT(*)
+FROM information_schema.columns
+WHERE table_schema = 'java_project' AND table_name = 'Customer';
 
 CREATE TABLE Film (
     IDFilm INT AUTO_INCREMENT PRIMARY KEY,
