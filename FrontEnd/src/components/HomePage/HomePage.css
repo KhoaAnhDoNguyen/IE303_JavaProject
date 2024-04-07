@@ -1,0 +1,5 @@
+/* Thiết lập viền cho nút "FilmDetail" */
+.film-detail-button {
+    border: 1px solid red;
+  }
+  
