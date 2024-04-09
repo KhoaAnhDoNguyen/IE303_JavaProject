@@ -1,0 +1,67 @@
+.header {
+    background-color: #0F172A;
+}
+
+.first-part {
+    display: flex; /* Các phần tử trong first-part sẽ căn giữa và cách nhau theo chiều ngang */
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 150px;
+    margin-right: 150px;
+
+}
+
+/*Logo*/
+.logo-container {
+    margin-top: 15px;
+}
+
+/*Ticket Booking*/
+.ticket-booking {
+    display: flex; /* Đảm bảo chiều dài của border chỉ bao gồm nội dung */
+    padding: 10px; /* Tạo khoảng cách giữa border và nội dung */
+    border: 2px solid yellow; /* Đặt border và màu nền mặc định là màu vàng */
+    border-radius: 7px; /* Bo tròn góc của border */
+    transition: all 0.3s; /* Tạo hiệu ứng transition cho khi di chuột vào */
+    background-color: yellow;
+    margin-top: 20px;
+  }
+  
+  .ticket-booking:hover {
+    border-color: #4E4AB0;
+    background:  #4E4AB0; /* Gradient từ màu vàng sang màu xanh khi hover */
+    color: white;
+  }
+
+  .ticket-text {
+    font-weight: bold;
+    font-size: 15px;
+    margin-left: 5px;
+  }
+
+  /*Search bar*/
+  .search-bar {
+    position: relative;
+    display: flex;
+    margin-top: 20px;
+    height: 40px;
+  }
+  
+  .search-input {
+    border: none;
+    outline: none;
+    font-size: 14px;
+    padding: 5px;
+    padding-right: 40px; /* Thêm khoảng cách để icon không che kín input */
+    border-radius: 20px;
+    text-align: left;
+  }
+
+  .search-icon {
+    margin-top: 5px;
+    position: absolute;
+    right: 8px;
+    color: #555;
+    pointer-events: none; /* Icon không tương tác */
+  }
+  
