@@ -1,5 +1,4 @@
-/* Thiết lập viền cho nút "FilmDetail" */
-.film-detail-button {
-    border: 1px solid red;
-  }
-  
+.homepage-container {
+  background-color: #0F172A;
+  min-height: 100vh; /* Đảm bảo phần tử bao bọc toàn bộ chiều cao của trang */
+}

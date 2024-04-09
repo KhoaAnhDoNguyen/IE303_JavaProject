@@ -7,7 +7,9 @@ function HomePage() {
 
   return (
     <div>
-        <Header />
+      <Header />
+      
+        <div style={{color:'black', marginTop:'500px'}}>Hello</div>
     </div>
   )
 }

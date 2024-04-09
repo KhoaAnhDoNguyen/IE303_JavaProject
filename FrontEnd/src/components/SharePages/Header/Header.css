@@ -1,13 +1,18 @@
 .header {
     background-color: #0F172A;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Đảm bảo header hiển thị trên tất cả các phần tử khác */
 }
 
 .first-part {
     display: flex; /* Các phần tử trong first-part sẽ căn giữa và cách nhau theo chiều ngang */
     align-items: center;
     justify-content: space-between;
-    margin-left: 150px;
-    margin-right: 150px;
+    margin-left: 200px;
+    margin-right: 200px;
 
 }
 
@@ -65,3 +70,75 @@
     pointer-events: none; /* Icon không tương tác */
   }
   
+  /*Login*/
+  .login {
+    display: flex;
+    margin-top: 20px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .login-text {
+    margin-left: 15px;
+    display: flex;
+  }
+
+  .login-link {
+    color: white; /* Màu chữ mặc định */
+    transition: color 0.3s; /* Hiệu ứng chuyển đổi màu trong 0.3s */
+    text-decoration: none; /* Loại bỏ gạch chân */
+  }
+  
+  .login-link:hover {
+    color: gold; /* Màu chữ khi hover */
+  }
+
+  /*Flag*/
+  .flag {
+    display: flex;
+    margin-top: 25px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .flag-text {
+    color: white;
+    margin-left: 5px;
+    font-weight: bold;
+    margin-top: -5px;
+  }
+
+/*Second Part*/
+  
+.second-part {
+  display: flex;
+  margin-left: 200px;
+  margin-right: 200px;
+  margin-top: 20px;
+}
+
+.cinema {
+    align-items: center;
+    justify-content: space-between;
+    color: white; 
+}
+
+.cinema:hover {
+  color: yellow; /* Màu chữ khi hover */
+}
+
+.more-info {
+  margin-top: 10px;
+  margin-left: auto; 
+}
+
+.promotion,
+.introduce {
+  color: white;
+  margin-left: 40px; /* Tạo khoảng cách giữa các liên kết */
+}
+
+.promotion:hover,
+.introduce:hover {
+  color: yellow; /* Màu chữ khi hover */
+}
