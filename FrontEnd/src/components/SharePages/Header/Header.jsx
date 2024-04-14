@@ -16,8 +16,7 @@ function Header() {
                 </div>
 
                 <div className='ticket-booking'>
-                    <img src=".\src\assets\ticket.png" alt="Logo" className="logo" />
-                    <div className="ticket-text">ĐẶT VÉ NGAY</div>
+                    <img src=".\src\assets\ticket.png" alt="Logo" className="ticket-icon" /><span>ĐẶT VÉ NGAY</span>
                 </div>
 
                 <div className='search-bar'>

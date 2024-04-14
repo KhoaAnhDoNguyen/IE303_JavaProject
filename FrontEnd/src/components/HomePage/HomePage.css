@@ -41,7 +41,7 @@
 
 .ms-film-img {
   width: auto; /* Độ rộng của ảnh phim */
-  height: 350px; /* Chiều cao tự động điều chỉnh để giữ tỷ lệ */  
+  height: 400px; /* Chiều cao tự động điều chỉnh để giữ tỷ lệ */  
 }
 
 .ms-film-title {
@@ -88,3 +88,38 @@
   color: yellow; /* Chuyển màu chữ sang màu vàng khi hover */
 }
 
+.trailer-ticket {
+  display: flex;
+  margin-top: 10px;
+}
+
+.trailer {
+  display: flex;
+  align-items: center; /* Căn chỉnh phần tử con theo chiều dọc */
+  color: white; /* Thiết lập màu chữ là màu trắng */
+  text-decoration: underline; /* Gạch chân cho chữ */
+  margin-right: 40px;
+  margin-left: 20px;
+}
+
+.trailer > svg {
+  width: 24px; /* Thiết lập chiều rộng của icon */
+  height: 24px; /* Thiết lập chiều cao của icon */
+  margin-right: 5px; /* Tạo khoảng cách giữa icon và chữ */
+}
+
+.ticket-text {
+  border-radius: 5px; /* Bo tròn góc */
+  border: 2px solid yellow; /* Thiết lập border cho chữ */
+  background-color: yellow;
+  color: black; /* Thiết lập màu chữ là màu đen */
+  padding: 5px 10px; /* Thêm padding để tạo khoảng cách giữa chữ và border */
+  transition: border-color 0.3s, background-color 0.3s; /* Hiệu ứng chuyển màu */
+  font-weight: bold;
+}
+
+.ticket-text:hover {
+  border-color: #4E4AB0; /* Chuyển màu border khi hover */
+  background-color: #4E4AB0; /* Chuyển màu background khi hover */
+  color: white; /* Chuyển màu chữ thành màu trắng khi hover */
+}

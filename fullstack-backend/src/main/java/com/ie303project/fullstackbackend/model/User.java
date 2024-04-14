@@ -16,7 +16,7 @@ public class User {
     private String email;
     @Column(name = "Password")
     private String password;
-    @Column(name = "PhoneNumber")
+    @Column(name = "phone_number")
     private String phonenumber;
 
     public Long getId() {
