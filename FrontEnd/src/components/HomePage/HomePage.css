@@ -1,4 +1,125 @@
+/*Home page tổng*/
 .homepage-container {
   background-color: #0F172A;
   min-height: 100vh; /* Đảm bảo phần tử bao bọc toàn bộ chiều cao của trang */
+}
+
+.homepage-main {
+  margin-top: 130px;
+  margin-left: 200px;
+  margin-right: 200px;
+}
+
+/*Phim đang chiếu*/
+.movie-showing {
+  display: flex;
+  flex-direction: column; /* Hiển thị các phần tử con theo chiều dọc */
+}
+
+.ms-text {
+  display: flex;
+  flex-direction: column; /* Hiển thị các phần tử con theo chiều dọc */
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 100px;
+  color: white; /* Màu trắng */
+  font-size: 33px; /* Kích thước phóng to */
+  font-weight: bold; /* In đậm */
+}
+
+.ms-film {
+  display: flex;
+  margin-top: 50px;
+}
+
+.ms-film-detail{
+  display: flex;
+  flex-direction: column; /* Hiển thị các phần tử con theo chiều dọc */
+  margin-right: 60px; /* Tạo khoảng cách bên phải mỗi bộ phim, trừ bộ phim cuối cùng */
+}
+
+.ms-film-img {
+  width: auto; /* Độ rộng của ảnh phim */
+  height: 400px; /* Chiều cao tự động điều chỉnh để giữ tỷ lệ */  
+}
+
+.ms-film-title {
+  text-align: center; /* Căn giữa văn bản */
+  margin-top: 20px; /* Khoảng cách giữa ảnh và chữ */
+  color: white; /* Màu chữ trắng */
+  font-size: 24px; /* Kích thước chữ phóng to */
+  font-weight: bold; /* Chữ in đậm */
+}
+
+
+.ms-film-detail {
+  position: relative; /* Thiết lập vị trí tương đối để chúng ta có thể dịch chuyển ảnh phim */
+}
+
+.ms-film-img {
+  transition: transform 0.3s ease; /* Hiệu ứng mượt mà khi di chuyển */
+}
+
+.ms-film-img:hover  {
+  transform: translateY(-10px); /* Di chuyển ảnh lên trên một chút khi hover */
+  color: yellow; /* Chuyển màu chữ sang màu vàng khi hover */
+  filter: brightness(150%); /* Tăng độ sáng của ảnh khi hover */
+}
+
+.ms-film-title {
+  transition: color 0.3s ease; /* Hiệu ứng mượt mà khi thay đổi màu */
+}
+
+.ms-film-img:hover + .ms-film-title {
+  color: yellow; /* Chuyển màu chữ sang màu vàng khi hover */
+}
+
+.ms-film-detail:hover img {
+  filter: brightness(150%); /* Tăng độ sáng của ảnh khi hover */
+}
+
+.ms-film-title:hover + .ms-film-img {
+  transform: translateY(-10px); /* Di chuyển ảnh lên trên một chút khi hover */
+  filter: brightness(150%); /* Tăng độ sáng của ảnh khi hover */
+}
+
+.ms-film-title:hover{
+  color: yellow; /* Chuyển màu chữ sang màu vàng khi hover */
+}
+
+.trailer-ticket {
+  display: flex;
+  margin-top: 10px;
+}
+
+.trailer {
+  display: flex;
+  align-items: center; /* Căn chỉnh phần tử con theo chiều dọc */
+  color: white; /* Thiết lập màu chữ là màu trắng */
+  text-decoration: underline; /* Gạch chân cho chữ */
+  margin-right: 40px;
+  margin-left: 20px;
+}
+
+.trailer > svg {
+  width: 24px; /* Thiết lập chiều rộng của icon */
+  height: 24px; /* Thiết lập chiều cao của icon */
+  margin-right: 5px; /* Tạo khoảng cách giữa icon và chữ */
+}
+
+.ticket-text {
+  border-radius: 5px; /* Bo tròn góc */
+  border: 2px solid yellow; /* Thiết lập border cho chữ */
+  background-color: yellow;
+  color: black; /* Thiết lập màu chữ là màu đen */
+  padding: 5px 10px; /* Thêm padding để tạo khoảng cách giữa chữ và border */
+  transition: border-color 0.3s, background-color 0.3s; /* Hiệu ứng chuyển màu */
+  font-weight: bold;
+}
+
+.ticket-text:hover {
+  border-color: #4E4AB0; /* Chuyển màu border khi hover */
+  background-color: #4E4AB0; /* Chuyển màu background khi hover */
+  color: white; /* Chuyển màu chữ thành màu trắng khi hover */
 }

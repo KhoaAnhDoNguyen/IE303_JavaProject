@@ -38,11 +38,18 @@
     color: white;
   }
 
-  .ticket-text {
-    font-weight: bold;
-    font-size: 15px;
-    margin-left: 5px;
+  .ticket-booking img {
+    margin-right: 5px; /* Khoảng cách giữa ảnh và chữ */
   }
+  
+  .ticket-booking span {
+    font-weight: bold; /* Đậm hơn */
+    color: black;
+  }
+
+  .ticket-booking:hover span {
+    color: white; /* Chuyển màu chữ sang trắng khi hover */
+  }  
 
   /*Search bar*/
   .search-bar {
