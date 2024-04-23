@@ -41,13 +41,13 @@ function HomePage() {
 
   return (
     <div className='homepage-container'>
-      <Header />
+      <Header className="custom-overlay"/>
       <div className='homepage-main'>
         <div className='movie-showing'>
             <div className='ms-text'>PHIM ĐANG CHIẾU</div>
             <div className='ms-film'>
 
-                <ChevronLeft className="chevron-button" onClick={prevMovie} disabled={currentIndex === 0} />
+                <ChevronLeft className="chevron-button" size={50} onClick={prevMovie} disabled={currentIndex === 0} />
 
                 {/* <div className='ms-film-detail'>
                     {movies.slice(currentIndex, currentIndex + 3).map(movie => (
@@ -59,7 +59,7 @@ function HomePage() {
                 </div> */}
 
                 <div className='ms-film-detail'>
-                    <img src=".\src\assets\quy-thuat.png" alt="FilmLogo" className="ms-film-img" />
+                    <img src=".\src\assets\Films\quy-thuat.png" alt="FilmLogo" className="ms-film-img" />
                     <div className='ms-film-title'>QUỶ THUẬT</div>
                     <div className='trailer-ticket'>
                       <div className="trailer" onClick={handleToggleVideo}>
@@ -77,7 +77,7 @@ function HomePage() {
                 </div>
 
 
-                <ChevronRight className="chevron-button" onClick={nextMovie} disabled={currentIndex >= movies.length - 3}  />
+                <ChevronRight className="chevron-button" size={50} onClick={nextMovie} disabled={currentIndex >= movies.length - 3}  />
 
             </div>
         </div>

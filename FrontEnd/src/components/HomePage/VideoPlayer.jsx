@@ -9,8 +9,8 @@ function VideoPlayer({ url, onClose }) {
         <ReactPlayer
           url={url}
           controls
-          width="800px" // Điều chỉnh kích thước video tùy thích
-          height="450px"
+          width="900px" // Điều chỉnh kích thước video tùy thích
+          height="650px"
         />
       </div>
     </div>
