@@ -6,8 +6,7 @@
 
 .homepage-main {
   margin-top: 130px;
-  margin-left: 200px;
-  margin-right: 200px;
+
 }
 
 /*Phim đang chiếu*/
@@ -36,7 +35,8 @@
 .ms-film-detail{
   display: flex;
   flex-direction: column; /* Hiển thị các phần tử con theo chiều dọc */
-  margin-right: 60px; /* Tạo khoảng cách bên phải mỗi bộ phim, trừ bộ phim cuối cùng */
+  margin-right: 10px; /* Tạo khoảng cách bên phải mỗi bộ phim, trừ bộ phim cuối cùng */
+  margin-left: 40px;
 }
 
 .ms-film-img {
@@ -127,7 +127,11 @@
   
 .chevron-button {
   color: white;
-  margin-top: 150px;
+  margin-top: 200px;
 }
 
+.chevron-button:hover {
+  transform: scale(1.2); /* Thay đổi kích thước icon khi hover */
+  color: yellow; /* Chuyển màu chữ sang màu vàng khi hover */
+}
 
