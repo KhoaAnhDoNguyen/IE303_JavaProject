@@ -51,7 +51,7 @@ function HomePage() {
             <div className='ms-text'>PHIM ĐANG CHIẾU</div>
             <div className='ms-film'>
 
-                <ChevronLeft className="chevron-button" style={{marginLeft: 50}} size={80} onClick={prevMovie} disabled={currentIndex === 0} />
+                < ChevronLeft className="chevron-button" style={{marginLeft: 50}} size={80} onClick={prevMovie} disabled={currentIndex === 0} />
 
                 {movies.slice(currentIndex, currentIndex + 4).map((movie, index) => (
                 <div className='ms-film-detail' key={movie.id_film}>
@@ -76,7 +76,7 @@ function HomePage() {
                 </div>
                 ))}
 
-                <ChevronRight className="chevron-button" style={{marginRight: 70}} size={80} onClick={nextMovie} disabled={currentIndex === 16}  />
+                <ChevronRight className="chevron-button" style={{marginRight: 70}} size={80} onClick={nextMovie} disabled={currentIndex >= (movies.length - 4)}  />
 
             </div>
         </div>
