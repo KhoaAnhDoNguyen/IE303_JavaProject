@@ -7,6 +7,7 @@ import axios from 'axios';
 import VideoPlayer from './VideoPlayer.jsx'; 
 
 function HomePage() {
+  //Movie showing
   const [movies, setMovies] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showVideo, setShowVideo] = useState([]);
@@ -43,6 +44,43 @@ function HomePage() {
     setShowVideo(updatedShowVideo);
   };
 
+
+  //Movie coming soon
+  const [movies_cs, setMovies_cs] = useState([]);
+  const [currentIndex_cs, setCurrentIndex_cs] = useState(0);
+  const [showVideo_cs, setShowVideo_cs] = useState([]);
+
+  useEffect(() => {
+    fetchMovies_cs();
+  }, []);
+  const fetchMovies_cs = async () => {
+    try {
+      const response = await axios.get('http://localhost:8080/films/status/0');
+      setMovies_cs(response.data);
+      // Khởi tạo mảng showVideo với tất cả giá trị false ban đầu
+      setShowVideo_cs(new Array(response.data.length).fill(false));
+    } catch (error) {
+      console.error('Error fetching movies:', error);
+    }
+  };
+
+  const prevMovie_cs = () => {
+    setCurrentIndex_cs(prevIndex => (prevIndex > 0 ? prevIndex - 1 : 0));
+  };
+
+  const nextMovie_cs = () => {
+    setCurrentIndex_cs(prevIndex => prevIndex < movies_cs.length - 4 ? prevIndex + 1 : prevIndex);
+  };
+
+  const handleToggleVideo_cs = (index_cs) => {
+    // Tạo một bản sao của mảng showVideo
+    const updatedShowVideo_cs = [...showVideo_cs];
+    // Đảo ngược trạng thái của video tại chỉ số index
+    updatedShowVideo_cs[index_cs] = !updatedShowVideo_cs[index_cs];
+    // Cập nhật mảng showVideo mới
+    setShowVideo_cs(updatedShowVideo_cs);
+  };
+
   return (
     <div className='homepage-container'>
       <Header className="custom-overlay"/>
@@ -50,37 +88,55 @@ function HomePage() {
         <div className='movie-showing'>
             <div className='ms-text'>PHIM ĐANG CHIẾU</div>
             <div className='ms-film'>
-
                 < ChevronLeft className="chevron-button" style={{marginLeft: 50}} size={80} onClick={prevMovie} disabled={currentIndex === 0} />
-
                 {movies.slice(currentIndex, currentIndex + 4).map((movie, index) => (
                 <div className='ms-film-detail' key={movie.id_film}>
-
                     <img src={movie.image} alt="FilmLogo" className="ms-film-img" />
                     <div className='ms-film-title'>{movie.filmName}</div>
                     <div className='trailer-ticket'>
                       <div className="trailer" onClick={() => handleToggleVideo(currentIndex + index)}>
                           <Youtube /> Xem Trailer
                       </div>
-
                       {showVideo[currentIndex + index] && (
                         <VideoPlayer
                           url={movie.demo} 
                           onClose={() => handleToggleVideo(currentIndex + index)}
                         />
                       )}
-
                       <div className="ticket-text">ĐẶT VÉ</div>
                     </div>
-
                 </div>
                 ))}
-
-                <ChevronRight className="chevron-button" style={{marginRight: 70}} size={80} onClick={nextMovie} disabled={currentIndex >= (movies.length - 4)}  />
-
+                <ChevronRight className="chevron-button" style={{marginRight: 70}} size={80} onClick={nextMovie} disabled={currentIndex > (movies.length - 4)}  />
             </div>
         </div>
-    
+                
+        <div className='movie-coming-soon'>
+            <div className='mcs-text'>PHIM SẮP CHIẾU</div>
+            <div className='mcs-film'>
+                < ChevronLeft className="chevron-button-cs" style={{marginLeft: 50}} size={80} onClick={prevMovie_cs} disabled={currentIndex_cs === 0} />
+                {movies_cs.slice(currentIndex_cs, currentIndex_cs + 4).map((movie_cs, index_cs) => (
+                <div className='mcs-film-detail' key={movie_cs.id_film}>
+                    <img src={movie_cs.image} alt="FilmLogo" className="mcs-film-img" />
+                    <div className='mcs-film-title'>{movie_cs.filmName}</div>
+                    <div className='trailer-ticket-cs'>
+                      <div className="trailer-cs" onClick={() => handleToggleVideo_cs(currentIndex_cs + index_cs)}>
+                          <Youtube /> Xem Trailer
+                      </div>
+                      {showVideo_cs[currentIndex_cs + index_cs] && (
+                        <VideoPlayer
+                          url={movie_cs.demo} 
+                          onClose={() => handleToggleVideo_cs(currentIndex_cs + index_cs)}
+                        />
+                      )}
+                      <div className="ticket-text-cs">ĐẶT VÉ</div>
+                    </div>
+                </div>
+                ))}
+                <ChevronRight className="chevron-button-cs" style={{marginRight: 70}} size={80} onClick={nextMovie_cs} disabled={currentIndex_cs >  (movies.length - 4)}  />
+            </div>
+        </div>
+
       </div>
     </div>
   )
