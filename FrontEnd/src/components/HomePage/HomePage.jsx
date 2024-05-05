@@ -5,8 +5,25 @@ import Header from '../SharePages/Header/Header.jsx';
 import { ChevronLeft, ChevronRight, Youtube } from 'react-feather';
 import axios from 'axios';
 import VideoPlayer from './VideoPlayer.jsx'; 
+import Slider from "react-slick";
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
 
 function HomePage() {
+  /*Animation for Poster */
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    prevArrow: <span className="slick-prev" />,
+    nextArrow: <span className="slick-next" />
+  };
+
   //Movie showing
   const [movies, setMovies] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -85,6 +102,17 @@ function HomePage() {
     <div className='homepage-container'>
       <Header className="custom-overlay"/>
       <div className='homepage-main'>
+        <div className='poster'>
+              <Slider {...settings}>
+                  <div className="text-center d-flex justify-content-center align-items-center">
+                      <img src=".\src\assets\Poster\lat-mat-7.webp" alt="image1" className="img-fluid"/>
+                  </div>
+                  <div className="text-center d-flex justify-content-center align-items-center">
+                      <img src=".\src\assets\Poster\vay-ham.webp" alt="image2" className="img-fluid "/>
+                  </div>
+              </Slider>
+          </div>       
+
         <div className='movie-showing'>
             <div className='ms-text'>PHIM ĐANG CHIẾU</div>
             <div className='ms-film'>

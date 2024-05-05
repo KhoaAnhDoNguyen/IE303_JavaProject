@@ -1,12 +1,28 @@
 /*Home page tổng*/
 .homepage-container {
   background-color: #0F172A;
-  min-height: 100vh; /* Đảm bảo phần tử bao bọc toàn bộ chiều cao của trang */
+  min-height: 100vh;
+  margin-top: 0; /* Giảm giá trị margin-top hoặc đặt là 0 */
 }
 
 .homepage-main {
-  margin-top: 57px;
+  margin-top: 10px; /* Điều chỉnh giá trị margin-top ở đây */
+  padding-top: 10px; /* Điều chỉnh giá trị padding-top ở đây */
 
+}
+
+/*Poster*/
+.poster {
+  margin-top: 150px; /* Điều chỉnh giá trị margin-top tại đây */
+  width: 80%;
+  height: 45vh;
+  background: radial-gradient(
+    circle at center, /* Vị trí xuất hiện của màu thứ nhất */
+    #5C3EA4 0%, /* Màu thứ hai */
+    #0F172A 50%, /* Màu thứ nhất */
+    #4159BF 110% /* Màu thứ ba */
+  );
+  margin-left: 150px;
 }
 
 /*Phim đang chiếu*/
@@ -14,7 +30,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100vh;
+  height: 110vh;
   background: radial-gradient(
     circle at 5% 5%, /* Vị trí xuất hiện của màu thứ nhất */
     #5C3EA4 0%, /* Màu thứ hai */
@@ -30,7 +46,7 @@
   align-items: center;
   justify-content: center;
 
-  margin-top: 150px;
+  margin-top: 120px;
   color: white; /* Màu trắng */
   font-size: 33px; /* Kích thước phóng to */
   font-weight: bold; /* In đậm */
