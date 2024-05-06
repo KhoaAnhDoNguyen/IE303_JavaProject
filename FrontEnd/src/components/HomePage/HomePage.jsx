@@ -164,6 +164,17 @@ function HomePage() {
                 <ChevronRight className="chevron-button-cs" style={{marginRight: 70}} size={80} onClick={nextMovie_cs} disabled={currentIndex_cs >  (movies.length - 4)}  />
             </div>
         </div>
+      
+        <div className='membership'>
+            <img src=".\src\assets\Membership\member-bg.webp" alt="image1" className="m-large"/>
+            <div className='membership-container'> 
+                <div className='membership-text'>CHƯƠNG TRÌNH THÀNH VIÊN</div>
+                <div className='membership-small-pic'>
+                    <img src=".\src\assets\Membership\c-vip.jpg" alt="image1" className="m-small-1"/>  
+                    <img src=".\src\assets\Membership\cfriend.jpg" alt="image1" className="m-small-2"/>
+                </div>
+            </div>
+        </div>
 
       </div>
     </div>

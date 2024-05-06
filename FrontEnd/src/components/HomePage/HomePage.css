@@ -165,7 +165,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100vh;
+  height: 110vh;
   background: radial-gradient(
     circle at 5% 5%, /* Vị trí xuất hiện của màu thứ nhất */
     #5C3EA4 0%, /* Màu thứ hai */
@@ -292,4 +292,43 @@
 .chevron-button-cs:hover {
   transform: scale(1.2); /* Thay đổi kích thước icon khi hover */
   color: yellow; /* Chuyển màu chữ sang màu vàng khi hover */
+}
+
+/*Membership*/
+.membership {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+
+.m-large {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.membership-text {
+  position: absolute;
+  top: 10%;
+  left: 28%;
+  color:white;
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.membership-small-pic{
+  position: absolute;
+  top:50%;
+}
+
+.m-small-1 {
+  margin-left: 80px;
+  border-radius: 10px;
+  border: 2px solid gold;
+}
+
+.m-small-2 {
+  margin-left: 120px;
+  border-radius: 10px;
+  border: 2px solid gold;
 }
