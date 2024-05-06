@@ -21,7 +21,11 @@ public class FilmController {
     {
         return filmRepository.save(newFilm);
     }
-
+    @GetMapping("/films/{IDFilm}")
+    Film getFilmById(@PathVariable Long IDFilm) {
+        return filmRepository.findById(IDFilm)
+                .orElseThrow(() -> new FilmNotFoundException(IDFilm));
+    }
     @GetMapping("/films")
     public List<Film> getAllFilms() {
         return filmRepository.findAll();

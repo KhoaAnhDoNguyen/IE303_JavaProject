@@ -98,6 +98,10 @@ function HomePage() {
     setShowVideo_cs(updatedShowVideo_cs);
   };
 
+  const handleFilmClick = (id_film) => {
+    console.log('Clicked film ID:', id_film);
+};
+
   return (
     <div className='homepage-container'>
       <Header className="custom-overlay"/>
@@ -118,9 +122,11 @@ function HomePage() {
             <div className='ms-film'>
                 < ChevronLeft className="chevron-button" style={{marginLeft: 50}} size={80} onClick={prevMovie} disabled={currentIndex === 0} />
                 {movies.slice(currentIndex, currentIndex + 4).map((movie, index) => (
-                <div className='ms-film-detail' key={movie.id_film}>
-                    <img src={movie.image} alt="FilmLogo" className="ms-film-img" />
-                    <div className='ms-film-title'>{movie.filmName}</div>
+                <div className='ms-film-detail' key={movie.idfilm}>
+                    <Link to={`/filmdetail/${movie.idfilm}`}>
+                      <img src={movie.image} alt="FilmLogo" className="ms-film-img" />
+                      <div className='ms-film-title'>{movie.filmName}</div> 
+                    </Link>
                     <div className='trailer-ticket'>
                       <div className="trailer" onClick={() => handleToggleVideo(currentIndex + index)}>
                           <Youtube /> Xem Trailer

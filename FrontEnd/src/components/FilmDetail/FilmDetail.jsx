@@ -4,10 +4,36 @@ import './FilmDetail.css'
 
 function FilmDetail() {
 
+  const [film, setFilm]=useState({
+    filmName: "",
+    Type : "",
+    Time: "",
+    Country: "",
+    Object: "",
+    Director: "",
+    Actor: "",
+    Premiere: "",
+    Content: "",
+    status: "",
+    Image: "",
+    Demo: ""
+  })
+
+  const {id_film}=useParams();
+
+  useEffect(() => {
+    loadFilm();
+    }, []);
+
+    const loadFilm = async () => {
+      const result = await axios.get(`http://localhost:8080/films/${id_film}`);
+      setFilm(result.data);
+    }
+
   return (
     <div>
-        <p>FilmDetail</p>
-        <Link to="/"> <button>HomePage</button> </Link>
+        {film.filmName}
+        {film.Demo}
     </div>
   )
 }

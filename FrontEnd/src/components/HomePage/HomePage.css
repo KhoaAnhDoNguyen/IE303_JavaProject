@@ -94,6 +94,7 @@
 
 .ms-film-title {
   transition: color 0.3s ease; /* Hiệu ứng mượt mà khi thay đổi màu */
+  text-decoration: none;
 }
 
 .ms-film-img:hover + .ms-film-title {
