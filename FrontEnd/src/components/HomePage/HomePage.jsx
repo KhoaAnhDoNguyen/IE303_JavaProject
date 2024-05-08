@@ -98,13 +98,10 @@ function HomePage() {
     setShowVideo_cs(updatedShowVideo_cs);
   };
 
-  const handleFilmClick = (id_film) => {
-    console.log('Clicked film ID:', id_film);
-};
 
   return (
     <div className='homepage-container'>
-      <Header className="custom-overlay"/>
+      <Header/>
       <div className='homepage-main'>
         <div className='poster'>
               <Slider {...settings}>
@@ -123,7 +120,7 @@ function HomePage() {
                 < ChevronLeft className="chevron-button" style={{marginLeft: 50}} size={80} onClick={prevMovie} disabled={currentIndex === 0} />
                 {movies.slice(currentIndex, currentIndex + 4).map((movie, index) => (
                 <div className='ms-film-detail' key={movie.idfilm}>
-                    <Link to={`/filmdetail/${movie.idfilm}`}>
+                    <Link to={`/filmdetail/${movie.idfilm}`} className="Link">
                       <img src={movie.image} alt="FilmLogo" className="ms-film-img" />
                       <div className='ms-film-title'>{movie.filmName}</div> 
                     </Link>
@@ -150,9 +147,11 @@ function HomePage() {
             <div className='mcs-film'>
                 < ChevronLeft className="chevron-button-cs" style={{marginLeft: 50}} size={80} onClick={prevMovie_cs} disabled={currentIndex_cs === 0} />
                 {movies_cs.slice(currentIndex_cs, currentIndex_cs + 4).map((movie_cs, index_cs) => (
-                <div className='mcs-film-detail' key={movie_cs.id_film}>
+                <div className='mcs-film-detail' key={movie_cs.idfilm}>
+                    <Link to={`/filmdetail/${movie_cs.idfilm}`} className="Link">
                     <img src={movie_cs.image} alt="FilmLogo" className="mcs-film-img" />
                     <div className='mcs-film-title'>{movie_cs.filmName}</div>
+                    </Link>
                     <div className='trailer-ticket-cs'>
                       <div className="trailer-cs" onClick={() => handleToggleVideo_cs(currentIndex_cs + index_cs)}>
                           <Youtube /> Xem Trailer

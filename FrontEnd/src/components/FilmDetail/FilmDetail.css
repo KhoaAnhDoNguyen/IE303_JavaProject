@@ -1,0 +1,41 @@
+/*Film Detail tổng*/
+.filmdetail-container {
+    background-color: #0F172A;
+    min-height: 100vh;
+    margin-top: 0; /* Giảm giá trị margin-top hoặc đặt là 0 */
+  }
+  
+.filmdetail-show {
+    display: flex;
+    margin-top: 50px; /* Điều chỉnh giá trị margin-top ở đây */
+    padding-top: 50px; /* Điều chỉnh giá trị padding-top ở đây */
+    width: 100%;
+    height: 110vh;
+    background: radial-gradient(
+      circle at 5% 5%, /* Vị trí xuất hiện của màu thứ nhất */
+      #5C3EA4 0%, /* Màu thứ hai */
+      #0F172A 50%, /* Màu thứ nhất */
+      #4159BF 110% /* Màu thứ ba */
+    );
+}
+
+.filmdetail-img {
+    margin-left: 200px;
+    margin-top: 100px;
+    width: auto; /* Độ rộng của ảnh phim */
+    height: 600px; /* Chiều cao tự động điều chỉnh để giữ tỷ lệ */ 
+    border-radius: 5px; 
+  }
+
+.filmdetail-info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 40px;
+}
+
+.filmdetail-name {
+    color:white;
+    font-size: 42px;
+    margin-top: 90px;
+    font-weight: bold;
+}

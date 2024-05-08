@@ -11,12 +11,12 @@ function Header() {
             <div className='first-part'>
                 <div className="logo-container">
                     <Link to="/">
-                        <img src=".\src\assets\logo.png" alt="Logo" className="logo" />
+                        <img src="/src/assets/logo.png" alt="Logo" className="logo" />
                     </Link>
                 </div>
 
                 <div className='ticket-booking'>
-                    <img src=".\src\assets\ticket.png" alt="Logo" className="ticket-icon" /><span>ĐẶT VÉ NGAY</span>
+                    <img src="/src/assets/ticket.png" alt="Logo" className="ticket-icon" /><span>ĐẶT VÉ NGAY</span>
                 </div>
 
                 <div className='search-bar'>
@@ -40,7 +40,7 @@ function Header() {
                 </div>
 
                 <div className='flag'>
-                    <img src=".\src\assets\vnflag.png" alt="Flag" className="flag-icon" />
+                    <img src="/src/assets/vnflag.png" alt="Flag" className="flag-icon" />
                     <div className='flag-text'>VN</div>
                 </div>
                 

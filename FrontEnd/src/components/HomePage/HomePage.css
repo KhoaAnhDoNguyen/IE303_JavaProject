@@ -8,7 +8,6 @@
 .homepage-main {
   margin-top: 10px; /* Điều chỉnh giá trị margin-top ở đây */
   padding-top: 10px; /* Điều chỉnh giá trị padding-top ở đây */
-
 }
 
 /*Poster*/
@@ -332,4 +331,8 @@
   margin-left: 120px;
   border-radius: 10px;
   border: 2px solid gold;
+}
+
+.Link {
+  text-decoration: none;
 }
