@@ -1,6 +1,6 @@
-import React from 'react';
-import ReactPlayer from 'react-player';
-import './VideoPlayer.css';
+import React from "react";
+import ReactPlayer from "react-player";
+import "./VideoPlayer.css";
 
 function VideoPlayer({ url, onClose }) {
   return (
