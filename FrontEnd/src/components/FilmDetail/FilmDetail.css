@@ -46,3 +46,66 @@ body {
     margin-top: 90px;
     font-weight: bold;
 }
+
+.showtimes {
+    width: 100%;
+    height: 50vh;
+    background: radial-gradient(
+      circle at 5% 5%, /* Vị trí xuất hiện của màu thứ nhất */
+      #5C3EA4 0%, /* Màu thứ hai */
+      #0F172A 50%, /* Màu thứ nhất */
+      #4159BF 110% /* Màu thứ ba */
+    );
+}
+
+.showtimes-text {
+    color:white;
+    display: flex;
+    font-size: 42px;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* Sử dụng vị trí tương đối */
+    top: 50px; /* Di chuyển chữ xuống 50px */
+}
+
+.showtimes-detail {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative; /* Sử dụng vị trí tương đối */
+    top: 100px; /* Di chuyển chữ xuống 50px */
+    margin-left: 40px;
+}
+
+.showtime-item {
+  width: 100px;
+  height: 100px;
+  border: 2px solid yellow;
+  margin-bottom: 5px;
+  text-align: center;
+  margin-right: 50px;
+  color:yellow;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.showtime-item p {
+  line-height: 0.5; /* Điều chỉnh khoảng cách giữa các dòng văn bản */
+  white-space: nowrap;
+  position: relative; /* Sử dụng vị trí tương đối */
+  top: 15px; /* Di chuyển chữ xuống 50px */
+}
+
+.showtime-item.selected {
+  background-color: yellow;
+}
+
+.showtime-item.selected p {
+  color: #0F172A;
+}
+
+.showtime-item :hover {
+  cursor: pointer;
+}

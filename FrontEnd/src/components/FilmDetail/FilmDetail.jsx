@@ -15,6 +15,7 @@ import VideoPlayer from "../HomePage/VideoPlayer.jsx";
 import Header from "../SharePages/Header/Header.jsx";
 
 function FilmDetail() {
+  //Film
   const [film, setFilm] = useState({
     filmName: "",
     status: "",
@@ -49,6 +50,34 @@ function FilmDetail() {
     setFilm(result.data);
   };
 
+  //Show Times
+  const [showtimes, setShowtimes] = useState([]);
+
+  useEffect(() => {
+    loadShowtime();
+  }, []);
+
+  const loadShowtime = async () => {
+    const result = await axios.get(`http://localhost:8080/showtimes/${idfilm}`);
+    setShowtimes(result.data);
+  };
+
+  const [selectedShowtime, setSelectedShowtime] = useState(null);
+  const [showSelectCinema, setShowSelectCinema] = useState(false);
+  const [selectedShowtimeInfo, setSelectedShowtimeInfo] = useState(null);
+  const handleShowtimeClick = (index) => {
+    if (selectedShowtime === index) {
+      setSelectedShowtime(null); // Nếu showtime đã được chọn rồi thì bấm lại sẽ hủy chọn
+      setShowSelectCinema(false); // Ẩn "Chọn vé"
+      setSelectedShowtimeInfo(null);
+    } else {
+      setSelectedShowtime(index); // Nếu chưa được chọn thì lưu chỉ số của showtime được chọn
+      setShowSelectCinema(true); // Hiển thị "Chọn vé"
+      setSelectedShowtimeInfo(showtimes[index]);
+    }
+  };
+
+  console.log(selectedShowtimeInfo);
   return (
     <div className="filmdetail-container" id="filmDetail">
       <Header />
@@ -116,7 +145,10 @@ function FilmDetail() {
           <div style={{ marginTop: 7, color: "white", fontSize: 15 }}>
             {film.content}
           </div>
-          <div style={{ marginTop: 15 }} onClick={() => handleToggleVideo()}>
+          <div
+            style={{ marginTop: 15, cursor: "pointer" }}
+            onClick={() => handleToggleVideo()}
+          >
             <PlayCircle size={40} color="yellow" />
             <span
               style={{
@@ -134,6 +166,27 @@ function FilmDetail() {
           </div>
         </div>
       </div>
+
+      <div className="showtimes">
+        <div className="showtimes-text">LỊCH CHIẾU</div>
+        <div className="showtimes-detail">
+          {showtimes.map((showtime, index) => (
+            <div
+              key={index}
+              className={`showtime-item ${
+                selectedShowtime === index ? "selected" : ""
+              }`}
+              onClick={() => handleShowtimeClick(index)}
+            >
+              <p>{showtime.date_show}</p>
+              <p>{showtime.day_show}</p>
+              <p>{showtime.time_show}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {showSelectCinema && <p>Chọn vé</p>}
     </div>
   );
 }
