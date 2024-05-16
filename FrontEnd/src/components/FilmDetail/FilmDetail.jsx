@@ -10,9 +10,11 @@ import {
   PlayCircle,
   Bold,
   Underline,
+  MapPin
 } from "react-feather";
 import VideoPlayer from "../HomePage/VideoPlayer.jsx";
 import Header from "../SharePages/Header/Header.jsx";
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 function FilmDetail() {
   //Film
@@ -65,6 +67,7 @@ function FilmDetail() {
   const [selectedShowtime, setSelectedShowtime] = useState(null);
   const [showSelectCinema, setShowSelectCinema] = useState(false);
   const [selectedShowtimeInfo, setSelectedShowtimeInfo] = useState(null);
+  
   const handleShowtimeClick = (index) => {
     if (selectedShowtime === index) {
       setSelectedShowtime(null); // Nếu showtime đã được chọn rồi thì bấm lại sẽ hủy chọn
@@ -77,7 +80,54 @@ function FilmDetail() {
     }
   };
 
-  console.log(selectedShowtimeInfo);
+  //Cinema
+  const [selectedPosition, setSelectedPosition] = useState("Hồ Chí Minh");
+  const [listCinemas, setListCinemas] = useState([]);
+  const [selectedCinema, setSelectedCinema] = useState(null);
+  const [selectedCinemaInfo, setSelectedCinemaInfo] = useState(null);
+
+  const handleCinemaChoose = (index) => {
+    if (selectedCinema === index) {
+      setSelectedCinema(null);
+      setSelectedCinemaInfo(null);
+    }
+    else {
+      setSelectedCinema(index);
+      setSelectedCinemaInfo(listCinemas[index]);
+    }
+  }
+
+  console.log(selectedCinemaInfo);
+
+  useEffect(() => {
+    if (selectedShowtime !== null) {
+      fetchCinemaByLocation(selectedPosition);
+    }
+  }, [selectedShowtime]);
+
+
+  const fetchCinemaByLocation = async (location) => {
+    try {
+      if (selectedShowtimeInfo) {
+        const result = await axios.get(`http://localhost:8080/cinemas/${idfilm}/${selectedShowtimeInfo.id_showtime}/${location}`);
+        setListCinemas(result.data);
+      }
+    } catch (error) {
+      console.error('Error fetching cinemas:', error);
+    }
+  };
+  
+  const handleCinemaClick = (text) => {
+    setSelectedPosition(text);
+    fetchCinemaByLocation(text);
+  };
+  
+  useEffect(() => {
+    fetchCinemaByLocation(selectedPosition);
+  }, []);
+  
+
+  
   return (
     <div className="filmdetail-container" id="filmDetail">
       <Header />
@@ -186,7 +236,42 @@ function FilmDetail() {
         </div>
       </div>
 
-      {showSelectCinema && <p>Chọn vé</p>}
+      {showSelectCinema && 
+        <div className="cinema-container">
+          <div className="cinema-title">
+                <div className="cinema-text">DANH SÁCH RẠP</div>
+          <div className="cinema-location">
+            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+            <MapPin size={18} color="yellow" style={{ marginTop: "-2px" }} /> <span className="selected-cinema">{selectedPosition}</span>
+            </button>
+          <ul className="dropdown-menu custom-dropdown" aria-labelledby="dropdownMenuButton">
+            <li><p className="dropdown-item my-1 custom-item" href="#" onClick={() => handleCinemaClick('Hồ Chí Minh')}>Hồ Chí Minh</p></li>
+            <li><p className="dropdown-item my-1 custom-item" href="#" onClick={() => handleCinemaClick('Bình Dương')}>Bình Dương</p></li>
+            <li><p className="dropdown-item my-1 custom-item" href="#" onClick={() => handleCinemaClick('Đà Lạt')}>Đà Lạt</p></li>
+          </ul>
+          </div>
+          </div>
+          
+          <div className="cinema-list"> 
+              {listCinemas.length > 0 ? (
+                  listCinemas.map((cinema, index) => (
+                    <div key={index} className={"cinema-detail" + (selectedCinema === index ? " selected" : "")} onClick={() => handleCinemaChoose(index)}> 
+                    <div className="cinema-name-time"> 
+                    <div className="cinema-name">{cinema.name_cinema}</div>
+                    <div className="cinema-time">
+                        {cinema.time_open}<span style={{ margin: '0 5px' }}>~</span>{cinema.time_close}
+                    </div>
+                    </div>
+                    <div className="cinema-address">{cinema.address}</div>
+                    <div className="cinema-room">Room : {cinema.room}</div>
+                    </div>
+              ))) : (
+                  <div className="no-cinemas">Phim hiện chưa có tại rạp này</div>
+                )}
+          </div>
+
+        </div>
+      }
     </div>
   );
 }

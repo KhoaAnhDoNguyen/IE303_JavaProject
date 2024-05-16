@@ -109,3 +109,109 @@ body {
 .showtime-item :hover {
   cursor: pointer;
 }
+
+/*Cinema*/
+.cinema-container {
+  width: 100%;
+  height: 110vh;
+  background: radial-gradient(
+    circle at 5% 5%,
+    #5C3EA4 0%,
+    #0F172A 50%,
+    #4159BF 110%
+  );
+  padding: 100px; /* Thêm padding để tạo khoảng cách */
+}
+
+.cinema-title {
+  display: flex;
+}
+
+.cinema-text {
+  color: white;
+  font-size: 42px;
+  font-weight: bold;
+  margin-left: 250px;
+}
+
+.cinema-location {
+  margin-left: 405px; /* Đẩy danh sách location cinema sang bên phải */
+  margin-top: 20px;
+}
+
+.selected-cinema {
+  color: yellow;
+}
+
+.custom-item {
+  cursor: pointer;
+}
+
+.cinema-list {
+  display: flex; /* Sử dụng flexbox */
+  flex-direction: column; /* Hiển thị các phần tử theo chiều dọc */
+  align-items: flex-start; 
+  margin-top: 40px;
+  margin-left: 250px;
+}
+
+.cinema-list :hover {
+  cursor: pointer;
+}
+
+.cinema-detail {
+  border: 2px solid #663399; /* Định dạng border màu tím */
+  background-color: #663399;
+  padding: 10px; /* Thêm padding để tạo khoảng cách giữa border và nội dung */
+  margin-bottom: 40px; /* Thêm margin dưới để tạo khoảng cách giữa các phần tử */
+  border-radius: 5px;
+  width: 900px;
+  height: 150px;
+}
+
+.cinema-detail.selected {
+  border-color: yellow; /* Thay đổi màu viền khi được chọn */
+}
+
+.cinema-name-time {
+  display: flex;
+  justify-content: space-between; /* Canh giữa các phần tử bên trong */
+  width: 100%; /* Đảm bảo phần tử đầy đủ chiều rộng của parent */
+}
+
+.cinema-name {
+  font-size: 30px;
+  color: yellow;
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+.cinema-time {
+  color: white;
+  font-size: 20px;
+  margin-top: 11px;
+  margin-right: 20px; /* Đưa thời gian về bên phải */
+}
+
+.cinema-address {
+  color: white;
+  font-size: 20px;
+  margin-top: 8px;
+  margin-left: 22px;
+}
+
+.cinema-room {
+  color: white;
+  font-size: 20px;
+  margin-top: 8px;
+  margin-left: 22px;
+  font-weight:bold;
+}
+
+.no-cinemas {
+  text-align: center; /* căn giữa nội dung */
+  color: white; /* màu trắng */
+  font-size: 30px; /* kích thước chữ */
+  margin-top: 20px; /* tạo khoảng cách từ phía trên */
+  margin-left: 250px;
+}
