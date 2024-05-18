@@ -113,7 +113,7 @@ body {
 /*Cinema*/
 .cinema-container {
   width: 100%;
-  height: 110vh;
+  height: 90vh;
   background: radial-gradient(
     circle at 5% 5%,
     #5C3EA4 0%,
@@ -214,4 +214,66 @@ body {
   font-size: 30px; /* kích thước chữ */
   margin-top: 20px; /* tạo khoảng cách từ phía trên */
   margin-left: 250px;
+}
+
+/*Ticket*/
+.ticket-container {
+  width: 100%;
+  height: 70vh;
+  background: radial-gradient(
+    circle at 5% 5%,
+    #5C3EA4 0%,
+    #0F172A 50%,
+    #4159BF 110%
+  );
+  padding: 100px; /* Thêm padding để tạo khoảng cách */
+}
+
+.ticket-text-hp {
+  text-align: center; /* căn giữa nội dung */
+  color: white; /* màu trắng */
+  font-size: 42px; /* kích thước chữ */
+  font-weight: bold;
+}
+
+.ticket-list {
+  display: flex;
+  justify-content: center;
+}
+
+.ticket-detail {
+  margin-right: 30px;
+  border: 1px solid white; /* Định dạng border màu tím */
+  background-color: #0F172A  ;
+  padding: 15px; /* Thêm padding để tạo khoảng cách giữa border và nội dung */
+  margin-bottom: 40px; /* Thêm margin dưới để tạo khoảng cách giữa các phần tử */
+  border-radius: 5px;
+  width: 300px;
+  height: 130px;
+  margin-top: 80px;
+}
+
+.ticket-detail :hover {
+  cursor: pointer;
+}
+
+.ticket-detail.selected {
+  border-color: yellow; /* Thay đổi màu viền khi được chọn */
+}
+
+.name-ticket {
+  color: white;
+  font-weight: 700;
+}
+
+.type-ticket {
+  color: gold;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.price-ticket {
+  color: white;
+  font-weight: 700; 
+  margin-top: 10px;
 }

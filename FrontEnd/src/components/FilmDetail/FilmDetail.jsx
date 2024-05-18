@@ -85,19 +85,21 @@ function FilmDetail() {
   const [listCinemas, setListCinemas] = useState([]);
   const [selectedCinema, setSelectedCinema] = useState(null);
   const [selectedCinemaInfo, setSelectedCinemaInfo] = useState(null);
+  const [showSelectTicket, setShowSelectTicket] = useState(false);
 
   const handleCinemaChoose = (index) => {
     if (selectedCinema === index) {
       setSelectedCinema(null);
       setSelectedCinemaInfo(null);
+      setShowSelectTicket(false);
     }
     else {
       setSelectedCinema(index);
       setSelectedCinemaInfo(listCinemas[index]);
+      setShowSelectTicket(true);
+      loadTickets(listCinemas[index].id_cinema)
     }
   }
-
-  console.log(selectedCinemaInfo);
 
   useEffect(() => {
     if (selectedShowtime !== null) {
@@ -120,14 +122,38 @@ function FilmDetail() {
   const handleCinemaClick = (text) => {
     setSelectedPosition(text);
     fetchCinemaByLocation(text);
+    setShowSelectTicket(false);
+    setSelectedCinema(null);
   };
   
   useEffect(() => {
     fetchCinemaByLocation(selectedPosition);
   }, []);
   
+  //Ticket
+  const [listTickets, setListTickets] = useState([]);
+  const [selectedTicket, setSelectedTicket] = useState(null);
+  const [selectedTicketInfo, setSelectedTicketInfo] = useState(null);
+  const [showSelectSeat, setShowSelectSeat] = useState(false);
+  const loadTickets = async (id_cinema) => {
+    const result = await axios.get(`http://localhost:8080/tickets/${id_cinema}`);
+    setListTickets(result.data);
+  };
 
-  
+  const handleTicketChoose = (index) => {
+    if (selectedTicket === index) {
+      setSelectedTicket(null);
+      setSelectedTicketInfo(null);
+      setShowSelectSeat(false)
+    }
+    else {
+      setSelectedTicket(index);
+      setSelectedTicketInfo(listTickets[index]);
+      setShowSelectSeat(true)
+    }
+  }
+
+
   return (
     <div className="filmdetail-container" id="filmDetail">
       <Header />
@@ -269,8 +295,22 @@ function FilmDetail() {
                   <div className="no-cinemas">Phim hiện chưa có tại rạp này</div>
                 )}
           </div>
-
         </div>
+      }
+
+      {showSelectTicket && 
+          <div className="ticket-container">
+              <div className="ticket-text-hp">CHỌN LOẠI VÉ</div>
+              <div className="ticket-list">
+                {( listTickets.map((ticket, index) => (
+                    <div key={index} className={"ticket-detail" + (selectedTicket === index ? " selected" : "")} onClick={() => handleTicketChoose(index)}> 
+                        <div className="name-ticket">{ticket.name_ticket}</div>
+                        <div className="type-ticket">{ticket.type_ticket}</div>
+                        <div className="price-ticket">{ticket.price.toLocaleString('vi-VN')} VNĐ</div>
+                    </div>
+                )))}
+              </div>
+          </div>
       }
     </div>
   );
