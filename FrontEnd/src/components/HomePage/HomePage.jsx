@@ -8,6 +8,7 @@ import VideoPlayer from "./VideoPlayer.jsx";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "/src/App.css";
 
 function HomePage() {
   /*Animation for Poster */
@@ -117,7 +118,7 @@ function HomePage() {
               <img
                 src=".\src\assets\Poster\vay-ham.webp"
                 alt="image2"
-                className="img-fluid "
+                className="img-fluid"
               />
             </div>
           </Slider>
@@ -149,6 +150,7 @@ function HomePage() {
                     <div
                       className="trailer"
                       onClick={() => handleToggleVideo(currentIndex + index)}
+                      style={{ cursor: "pointer" }}
                     >
                       <Youtube /> Xem Trailer
                     </div>
@@ -158,7 +160,9 @@ function HomePage() {
                         onClose={() => handleToggleVideo(currentIndex + index)}
                       />
                     )}
-                    <div className="ticket-text">ĐẶT VÉ</div>
+                    <Link to={`/filmdetail/${movie.idfilm}`} className="Link">
+                      <div className="ticket-text">ĐẶT VÉ</div>
+                    </Link>
                   </div>
                 </div>
               ))}

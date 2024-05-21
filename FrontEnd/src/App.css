@@ -1,6 +1,4 @@
-body, html {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  color: #4E4AB0;
+/* App.css */
+body {
+  font-family: "Josefin Sans", sans-serif; /* Thay đổi 'Arial' thành phông chữ bạn muốn sử dụng */
 }

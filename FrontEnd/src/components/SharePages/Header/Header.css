@@ -11,8 +11,8 @@
     display: flex; /* Các phần tử trong first-part sẽ căn giữa và cách nhau theo chiều ngang */
     align-items: center;
     justify-content: space-between;
-    margin-left: 200px;
-    margin-right: 200px;
+    margin-left: 190px;
+    margin-right: 190px;
 
 }
 
@@ -119,9 +119,10 @@
   
 .second-part {
   display: flex;
-  margin-left: 200px;
-  margin-right: 200px;
+  margin-left: 190px;
+  margin-right: 190px;
   margin-top: 20px;
+  margin-bottom: 10px;
 }
 
 .cinema {
@@ -135,18 +136,19 @@
 }
 
 .more-info {
-  margin-top: 10px;
-  margin-left: auto; 
+  margin-left: auto;
+  display: flex; /* Sử dụng flexbox để căn chỉnh các liên kết */
+  align-items: center; /* Căn giữa các mục theo chiều dọc */
 }
 
 .promotion,
 .introduce {
   color: white;
-  margin-left: 40px; /* Tạo khoảng cách giữa các liên kết */
+  margin-left: 35px; /* Tạo khoảng cách giữa các liên kết */
+  margin-top: -5px; /* Di chuyển các mục lên một chút */
 }
 
 .promotion:hover,
 .introduce:hover {
   color: yellow; /* Màu chữ khi hover */
 }
-

@@ -7,11 +7,15 @@ import { MapPin } from "react-feather";
 import { Link as ScrollLink } from "react-scroll";
 
 function Header() {
+  const handleLogoClick = () => {
+    window.scrollTo(0, 0); // Cuộn về đầu trang
+  };
+
   return (
     <div className="header">
       <div className="first-part">
         <div className="logo-container">
-          <Link to="/">
+          <Link to="/" onClick={handleLogoClick}>
             <img src="/src/assets/logo.png" alt="Logo" className="logo" />
           </Link>
         </div>
@@ -22,7 +26,7 @@ function Header() {
               alt="Logo"
               className="ticket-icon"
             />
-            <span>ĐẶT VÉ NGAY</span>
+            <span style={{ cursor: "pointer" }}>ĐẶT VÉ NGAY</span>
           </div>
         </ScrollLink>
         <div className="search-bar">
@@ -67,8 +71,8 @@ function Header() {
         style={{
           backgroundColor: "white",
           height: "1px",
-          marginLeft: "200px",
-          marginRight: "200px",
+          marginLeft: "190px",
+          marginRight: "190px",
           marginTop: "20px",
         }}
       ></div>
