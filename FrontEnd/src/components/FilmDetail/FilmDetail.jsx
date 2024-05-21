@@ -97,7 +97,8 @@ function FilmDetail() {
       setSelectedCinema(index);
       setSelectedCinemaInfo(listCinemas[index]);
       setShowSelectTicket(true);
-      loadTickets(listCinemas[index].id_cinema)
+      loadTickets(listCinemas[index].id_cinema);
+      loadSeats(listCinemas[index].id_cinema, listCinemas[index].room);
     }
   }
 
@@ -124,6 +125,8 @@ function FilmDetail() {
     fetchCinemaByLocation(text);
     setShowSelectTicket(false);
     setSelectedCinema(null);
+    setShowSelectSeat(false);
+    setSelectedTicket(null);
   };
   
   useEffect(() => {
@@ -135,6 +138,7 @@ function FilmDetail() {
   const [selectedTicket, setSelectedTicket] = useState(null);
   const [selectedTicketInfo, setSelectedTicketInfo] = useState(null);
   const [showSelectSeat, setShowSelectSeat] = useState(false);
+
   const loadTickets = async (id_cinema) => {
     const result = await axios.get(`http://localhost:8080/tickets/${id_cinema}`);
     setListTickets(result.data);
@@ -149,11 +153,50 @@ function FilmDetail() {
     else {
       setSelectedTicket(index);
       setSelectedTicketInfo(listTickets[index]);
-      setShowSelectSeat(true)
+      setShowSelectSeat(true);
     }
   }
 
+  //Seat
+  const [listSeats, setListSeats] = useState([]);
+  const [selectedSeat, setSelectedSeat] = useState(null);
+  const [boughtSeat, setBoughtSeat] = useState([])
+  const boughtSeatList = boughtSeat.map(seat => seat.seat);
 
+
+  const loadSeats = async (id_cinema, room) => {
+    const result = await axios.get(`http://localhost:8080/seats/${id_cinema}/${room}`);
+    setListSeats(result.data);
+  };
+
+
+  const loadBoughtSeats = async (idFilm, idShowtime, idCinema, idTicket, idSeat) => {
+    const result = await axios.get(`http://localhost:8080/bookings/1/${idFilm}/${idShowtime}/${idCinema}/${idTicket}/${idSeat}`);
+    setBoughtSeat(result.data);
+  };
+
+  useEffect(() => {
+    if (selectedShowtimeInfo !== null && selectedCinemaInfo !== null && selectedTicketInfo !== null && listSeats!== null ) {
+      loadBoughtSeats(1, idfilm, selectedShowtimeInfo.id_showtime, selectedCinemaInfo.id_cinema, 
+            selectedTicketInfo.id_ticket, listSeats.id_seat);
+    }
+  }, [selectedShowtimeInfo, selectedCinemaInfo, selectedTicketInfo , listSeats]);
+
+  const getAlphabetChar = index => {
+    return String.fromCharCode(65 + index); // Chữ cái A có mã Unicode là 65
+  };
+  
+  const handleSeatClick = (seatLabel) => {
+    if (boughtSeatList.includes(seatLabel)) {
+      alert("Ghế đã có người đặt vui lòng chọn ghế khác");
+    } else if (selectedSeat === seatLabel) {
+      setSelectedSeat(null); // Bỏ chọn ghế nếu đã được chọn trước đó
+    } else {
+      setSelectedSeat(seatLabel); // Chọn ghế nếu chưa được chọn
+    }
+  };
+
+  
   return (
     <div className="filmdetail-container" id="filmDetail">
       <Header />
@@ -312,6 +355,44 @@ function FilmDetail() {
               </div>
           </div>
       }
+
+      {
+        showSelectSeat &&
+        <div className="seat-container">
+          <div class="screen">
+              <div className="screen-text">MÀN CHIẾU</div>
+              <div className="line"></div>
+          </div>
+
+
+          <div className="seat-plan">
+          {listSeats.map(seat => (
+              <div key={seat.id_seat}>
+              {[...Array(seat.num_row)].map((_, rowIndex) => (
+                  <div key={rowIndex} className={`seat-row row-${rowIndex}`}>
+                  <div className="row-label">{getAlphabetChar(rowIndex)}</div>
+                  {[...Array(seat.num_col)].map((_, colIndex) => {
+                  const seatLabel = `${getAlphabetChar(rowIndex)}${colIndex + 1}`;
+                  const isBoughtSeat = boughtSeatList.includes(seatLabel);
+                  const isSelected = selectedSeat === seatLabel;
+          return (
+            <div
+              key={colIndex}
+              className={`seat ${isSelected ? 'selected' : ''} ${isBoughtSeat ? 'bought' : ''}`}
+              onClick={() => handleSeatClick(seatLabel)}
+            >
+              {seatLabel} {/* Hiển thị ghế */}
+            </div>
+          );
+                    })}
+              </div>
+              ))}
+            </div>
+            ))}
+        </div>
+        </div>
+      }
+
     </div>
   );
 }
