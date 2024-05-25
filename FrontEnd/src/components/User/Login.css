@@ -1,0 +1,10 @@
+/* Login.css */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('./src/assets/Membership/member-bg.webp') no-repeat center center;
+    background-size: cover;
+    height: 100vh;
+  }
+  

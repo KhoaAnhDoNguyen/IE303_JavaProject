@@ -20,8 +20,7 @@ function HomePage() {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
-    prevArrow: <span className="slick-prev" />,
-    nextArrow: <span className="slick-next" />,
+    arrows: false
   };
 
   //Movie showing

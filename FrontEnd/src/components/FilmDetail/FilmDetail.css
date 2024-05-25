@@ -216,6 +216,14 @@ body {
   margin-left: 250px;
 }
 
+.no-showtime {
+  text-align: center; /* căn giữa nội dung */
+  color: white; /* màu trắng */
+  font-size: 30px; /* kích thước chữ */
+  margin-top: 150px; /* tạo khoảng cách từ phía trên */
+  margin-left: 20px;
+}
+
 /*Ticket*/
 .ticket-container {
   width: 100%;
@@ -243,7 +251,7 @@ body {
 
 .ticket-detail {
   margin-right: 30px;
-  border: 1px solid white; /* Định dạng border màu tím */
+  border: 3px solid white; /* Định dạng border màu tím */
   background-color: #0F172A  ;
   padding: 15px; /* Thêm padding để tạo khoảng cách giữa border và nội dung */
   margin-bottom: 40px; /* Thêm margin dưới để tạo khoảng cách giữa các phần tử */
@@ -352,6 +360,6 @@ body {
 
 .seat.bought {
   /* CSS cho các ghế đã được mua */
-  background-color: #ffff00; /* Màu nền vàng */
-  border-color: yellow;
+  background-color: #555555; /* Màu nền vàng */
+  border-color: #555555;
 }

@@ -1,8 +1,8 @@
 /*Home page tổng*/
 .homepage-container {
-  background-color: #0F172A;
   min-height: 100vh;
   margin-top: 0; /* Giảm giá trị margin-top hoặc đặt là 0 */
+  background-image: linear-gradient(to bottom, #0F172A, #4159BF);
 }
 
 .homepage-main {
@@ -13,16 +13,16 @@
 
 /*Poster*/
 .poster {
-  margin-top: 150px; /* Điều chỉnh giá trị margin-top tại đây */
+  margin-top: 160px; /* Điều chỉnh giá trị margin-top tại đây */
   width: 80%;
-  height: 47vh;
-  background-color: #0F172A;
+  height: 53vh;
   margin-left: 150px;
 }
 
 .img-fluid{
   width: 1150px;
 }
+
 /*Phim đang chiếu*/
 .movie-showing {
   display: flex;
@@ -101,20 +101,24 @@
 
 .ms-film-detail:hover img {
   filter: brightness(150%); /* Tăng độ sáng của ảnh khi hover */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Đổ bóng */
 }
 
 .ms-film-title:hover + .ms-film-img {
   transform: translateY(-10px); /* Di chuyển ảnh lên trên một chút khi hover */
   filter: brightness(150%); /* Tăng độ sáng của ảnh khi hover */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Đổ bóng */
 }
+
 
 .ms-film-title:hover{
   color: yellow; /* Chuyển màu chữ sang màu vàng khi hover */
 }
 
 .trailer-ticket {
+  position: absolute;
   display: flex;
-  margin-top: 10px;
+  margin-top: 510px;
 }
 
 .trailer {
@@ -159,6 +163,9 @@
   transform: scale(1.2); /* Thay đổi kích thước icon khi hover */
   color: yellow; /* Chuyển màu chữ sang màu vàng khi hover */
 }
+
+/**/
+
 
 /*Phim sắp chiếu*/
 .movie-coming-soon {
@@ -248,8 +255,9 @@
 }
 
 .trailer-ticket-cs {
+  position: absolute;
   display: flex;
-  margin-top: 10px;
+  margin-top: 510px;
 }
 
 .trailer-cs {

@@ -163,24 +163,24 @@ function FilmDetail() {
   const [boughtSeat, setBoughtSeat] = useState([])
   const boughtSeatList = boughtSeat.map(seat => seat.seat);
 
-
+  console.log(boughtSeat)
   const loadSeats = async (id_cinema, room) => {
     const result = await axios.get(`http://localhost:8080/seats/${id_cinema}/${room}`);
     setListSeats(result.data);
   };
 
 
-  const loadBoughtSeats = async (idFilm, idShowtime, idCinema, idTicket, idSeat) => {
-    const result = await axios.get(`http://localhost:8080/bookings/1/${idFilm}/${idShowtime}/${idCinema}/${idTicket}/${idSeat}`);
+  const loadBoughtSeats = async (idFilm, idShowtime, idCinema, idSeat) => {
+    const result = await axios.get(`http://localhost:8080/bookings/1/${idFilm}/${idShowtime}/${idCinema}/${idSeat}`);
     setBoughtSeat(result.data);
   };
 
   useEffect(() => {
-    if (selectedShowtimeInfo !== null && selectedCinemaInfo !== null && selectedTicketInfo !== null && listSeats!== null ) {
+    if (selectedShowtimeInfo !== null && selectedCinemaInfo !== null  && listSeats!== null ) {
       loadBoughtSeats(1, idfilm, selectedShowtimeInfo.id_showtime, selectedCinemaInfo.id_cinema, 
-            selectedTicketInfo.id_ticket, listSeats.id_seat);
+             listSeats.id_seat);
     }
-  }, [selectedShowtimeInfo, selectedCinemaInfo, selectedTicketInfo , listSeats]);
+  }, [selectedShowtimeInfo, selectedCinemaInfo, listSeats]);
 
   const getAlphabetChar = index => {
     return String.fromCharCode(65 + index); // Chữ cái A có mã Unicode là 65
@@ -236,32 +236,32 @@ function FilmDetail() {
             style={{
               marginTop: 15,
               color: "white",
-              fontSize: 25,
+              fontSize: 22,
               fontWeight: "bold",
             }}
           >
             MÔ TẢ
           </div>
-          <div style={{ marginTop: 7, color: "white", fontSize: 20 }}>
+          <div style={{ marginTop: 7, color: "white", fontSize: 16 }}>
             Đạo diễn: {film.director}
           </div>
-          <div style={{ marginTop: 7, color: "white", fontSize: 20 }}>
+          <div style={{ marginTop: 7, color: "white", fontSize: 16 }}>
             Diễn viên: {film.actor}
           </div>
-          <div style={{ marginTop: 7, color: "white", fontSize: 20 }}>
+          <div style={{ marginTop: 7, color: "white", fontSize: 16 }}>
             Khởi chiếu: {film.premiere}
           </div>
           <div
             style={{
               marginTop: 15,
               color: "white",
-              fontSize: 25,
+              fontSize: 22,
               fontWeight: "bold",
             }}
           >
             NỘI DUNG PHIM
           </div>
-          <div style={{ marginTop: 7, color: "white", fontSize: 15 }}>
+          <div style={{ marginTop: 7, color: "white", fontSize: 16 }}>
             {film.content}
           </div>
           <div
@@ -288,6 +288,7 @@ function FilmDetail() {
 
       <div className="showtimes">
         <div className="showtimes-text">LỊCH CHIẾU</div>
+        {showtimes.length > 0 ? (
         <div className="showtimes-detail">
           {showtimes.map((showtime, index) => (
             <div
@@ -303,6 +304,9 @@ function FilmDetail() {
             </div>
           ))}
         </div>
+        ) :  (
+          <div className="no-showtime">Phim hiện chưa có lịch chiếu</div>
+        )}
       </div>
 
       {showSelectCinema && 
