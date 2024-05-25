@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext  } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Logic from "./LoginLogic";
 import axios from "axios";
 import './Login.css';
+import UserContext from "./UserContext.jsx";
 
 function Login() {
     const navigate = useNavigate();
-    const [user, setUser] = useState(null);
-
+    //const [user, setUser] = useState(null);
+    const { updateUser } = useContext(UserContext);
     const [values, setValues] = useState({
         email: '',
         password: ''
@@ -24,11 +25,11 @@ function Login() {
         event.preventDefault();
             try {
                 const response = await axios.get(`http://localhost:8080/users/${values.email}/${values.password}`);
-                console.log('API response:', response);
+                //console.log('API response:', response);
                 if (response.data.length > 0) {
-                    setUser(response.data);
-                    console.log('User data:', response.data);
-                    alert('Đăng nhập thành công!');
+                    updateUser(response.data);
+                    //console.log('User data:', response.data);
+                    //alert('Đăng nhập thành công!');
                     navigate('/');
                 } else {
                     console.log('Login failed. No data returned.');
@@ -42,15 +43,10 @@ function Login() {
 
     }
 
-    useEffect(() => {
-        if (user) {
-            console.log('User state updated:', user);
-        }
-    }, [user]);
 
     const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
-            console.log('Enter key pressed');
+            //console.log('Enter key pressed');
             handleSubmit(event);
         }
     }

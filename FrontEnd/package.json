@@ -14,6 +14,7 @@
     "bootstrap": "^5.3.3",
     "konva": "^9.3.8",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.10.2",
     "react-dom": "^18.2.0",
     "react-feather": "^2.0.10",
     "react-konva": "^18.2.10",

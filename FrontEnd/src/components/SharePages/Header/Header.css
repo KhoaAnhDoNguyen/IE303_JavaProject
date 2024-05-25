@@ -94,12 +94,22 @@
     color: white; /* Màu chữ mặc định */
     transition: color 0.3s; /* Hiệu ứng chuyển đổi màu trong 0.3s */
     text-decoration: none; /* Loại bỏ gạch chân */
+    margin-top: 10px;
   }
   
   .login-link:hover {
     color: gold; /* Màu chữ khi hover */
+    cursor: pointer;
   }
 
+  .logout-button-container {
+    position: absolute;
+    top: 30%;
+    left: 100;
+    margin-top: 25px; /* Điều chỉnh khoảng cách so với dòng chào hỏi */
+    margin-left: 20px;
+  }
+  
   /*Flag*/
   .flag {
     display: flex;

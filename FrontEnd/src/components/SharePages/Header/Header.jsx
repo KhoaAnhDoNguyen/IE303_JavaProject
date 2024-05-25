@@ -1,16 +1,32 @@
-import React from "react";
+import React, { useContext, useState } from 'react';
 import "./Header.css";
 import { Search } from "react-feather";
 import { User } from "react-feather";
 import { Link } from "react-router-dom";
 import { MapPin } from "react-feather";
 import { Link as ScrollLink } from "react-scroll";
+import UserContext from "../../User/UserContext.jsx";
+import { Button } from 'react-bootstrap';
 
 function Header() {
+  const { user, updateUser } = useContext(UserContext);
+
   const handleLogoClick = () => {
     window.scrollTo(0, 0); // Cuộn về đầu trang
   };
 
+  const userInfo = user && user.length > 0 ? user[0] : null;
+  console.log(userInfo)
+  const [showLogout, setShowLogout] = useState(false);
+  const handleUserClick = () => {
+    setShowLogout(!showLogout);
+  };
+  
+  const handleLogOut = () => {
+    updateUser(null);
+  };
+  
+  
   return (
     <div className="header">
       <div className="first-part">
@@ -45,19 +61,25 @@ function Header() {
             <User color="#FFFF" />
           </div>
           <div className="login-text">
-            <Link to="/login" className="login-link">
-              Đăng nhập{" "}
-            </Link>
-            <div
-              style={{ marginLeft: "7px", marginRight: "7px", color: "white" }}
-            >
-              {" "}
-              /{" "}
-            </div>
-            <Link to="/signup" className="login-link">
-              {" "}
-              Đăng ký
-            </Link>
+            {userInfo  ? (
+              // In các thành phần trong user nếu tồn tại
+              <>
+              <span className="login-link" onClick={handleUserClick}>Xin chào {userInfo.name} !</span>
+              {showLogout && (
+                <div className="logout-button-container">
+                <Button variant="danger" className="ml-2 mt-n3" onClick={handleLogOut}>
+                  Đăng xuất
+                </Button>
+                </div>
+              )}
+              </>
+            ) : (
+              <>
+                <Link to="/login" className="login-link">Đăng nhập</Link>
+                <div style={{ marginLeft: "7px", marginRight: "7px", color: "white", marginTop: "10px" }}> / </div>
+                <Link to="/signup" className="login-link">Đăng ký</Link>
+              </>
+            )}
           </div>
         </div>
 
