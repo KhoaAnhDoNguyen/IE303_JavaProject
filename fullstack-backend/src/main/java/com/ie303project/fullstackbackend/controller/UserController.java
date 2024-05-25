@@ -27,10 +27,9 @@ public class UserController {
         return userRepository.findAll();
     }
 
-    @GetMapping("/users/{id}")
-    User getUserById(@PathVariable Long id) {
-        return userRepository.findById(id)
-                .orElseThrow(() -> new UserNotFoundException(id));
+    @GetMapping("/users/{email}/{password}")
+    public List<User> getUserByEmailAndPassword(@PathVariable String email, @PathVariable String password) {
+        return userRepository.findByEmailAndPassword(email, password);
     }
 
     @PutMapping("/user/{id}")

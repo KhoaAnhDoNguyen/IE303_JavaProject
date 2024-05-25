@@ -3,7 +3,7 @@ package com.ie303project.fullstackbackend.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Customer")
+@Table(name = "Users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
