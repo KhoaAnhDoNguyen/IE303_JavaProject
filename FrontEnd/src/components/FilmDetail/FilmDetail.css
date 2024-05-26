@@ -299,6 +299,7 @@ body {
   padding: 100px; /* Thêm padding để tạo khoảng cách */ 
 }
 
+
 .line {
   top: 50%; /* Đặt đường thẳng ở giữa theo chiều dọc */
   left: 0;
@@ -306,6 +307,7 @@ body {
   height: 6px; /* Độ dày của đường thẳng */
   background-color: white; /* Màu sắc của đường thẳng */
   margin-left: 180px;
+  margin-top: 20px;
 }
 
 .screen-text {
@@ -313,6 +315,7 @@ body {
   font-weight: 700; 
   font-size: 35px;
   margin-left: 550px;
+  margin-top: 50px;
 }
 
 
@@ -321,8 +324,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-top: 100px; /* Đẩy toàn bộ khối xuống cách trên cùng 100px */
-  margin-left: 170px; /* Đẩy toàn bộ khối sang phải cách trái 170px */
+  margin-top: 70px; /* Đẩy toàn bộ khối xuống cách trên cùng 100px */
+  margin-left: 190px; /* Đẩy toàn bộ khối sang phải cách trái 170px */
 }
 
 .seat-row {

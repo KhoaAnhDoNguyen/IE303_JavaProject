@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import "./FilmDetail.css";
 import axios from "axios";
@@ -15,8 +15,17 @@ import {
 import VideoPlayer from "../HomePage/VideoPlayer.jsx";
 import Header from "../SharePages/Header/Header.jsx";
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import UserContext from "../User/UserContext.jsx";
 
 function FilmDetail() {
+  //User
+  const { user, updateUser } = useContext(UserContext);
+  const userInfo = user && user.length > 0 ? user[0] : null;
+  //console.log(userInfo.name)
+
+  const cinemaRef = useRef(null);
+  const ticketRef = useRef(null);
+  const seatRef = useRef(null);
   //Film
   const [film, setFilm] = useState({
     filmName: "",
@@ -43,8 +52,9 @@ function FilmDetail() {
   const { idfilm } = useParams();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     loadFilm();
-    document.getElementById("filmDetail").scrollIntoView();
+    //document.getElementById("filmDetail").scrollIntoView(); 
   }, []);
 
   const loadFilm = async () => {
@@ -73,10 +83,20 @@ function FilmDetail() {
       setSelectedShowtime(null); // Nếu showtime đã được chọn rồi thì bấm lại sẽ hủy chọn
       setShowSelectCinema(false); // Ẩn "Chọn vé"
       setSelectedShowtimeInfo(null);
+      setShowSelectTicket(false);
+      setShowSelectSeat(false);
+      setSelectedCinema(null);
+      setSelectedCinemaInfo(null);
     } else {
       setSelectedShowtime(index); // Nếu chưa được chọn thì lưu chỉ số của showtime được chọn
       setShowSelectCinema(true); // Hiển thị "Chọn vé"
       setSelectedShowtimeInfo(showtimes[index]);
+      // Scroll to cinema section
+      setTimeout(() => {
+        if (cinemaRef.current) {
+          cinemaRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 0);
     }
   };
 
@@ -92,6 +112,9 @@ function FilmDetail() {
       setSelectedCinema(null);
       setSelectedCinemaInfo(null);
       setShowSelectTicket(false);
+      setShowSelectSeat(false);
+      setSelectedTicket(null);
+      setSelectedTicketInfo(null);
     }
     else {
       setSelectedCinema(index);
@@ -99,6 +122,11 @@ function FilmDetail() {
       setShowSelectTicket(true);
       loadTickets(listCinemas[index].id_cinema);
       loadSeats(listCinemas[index].id_cinema, listCinemas[index].room);
+      setTimeout(() => {
+        if (ticketRef.current) {
+          ticketRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 0);
     }
   }
 
@@ -154,6 +182,11 @@ function FilmDetail() {
       setSelectedTicket(index);
       setSelectedTicketInfo(listTickets[index]);
       setShowSelectSeat(true);
+      setTimeout(() => {
+        if (seatRef.current) {
+          seatRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 0);
     }
   }
 
@@ -163,7 +196,7 @@ function FilmDetail() {
   const [boughtSeat, setBoughtSeat] = useState([])
   const boughtSeatList = boughtSeat.map(seat => seat.seat);
 
-  console.log(boughtSeat)
+  //console.log(boughtSeat)
   const loadSeats = async (id_cinema, room) => {
     const result = await axios.get(`http://localhost:8080/seats/${id_cinema}/${room}`);
     setListSeats(result.data);
@@ -310,7 +343,7 @@ function FilmDetail() {
       </div>
 
       {showSelectCinema && 
-        <div className="cinema-container">
+        <div className="cinema-container" ref={cinemaRef}>
           <div className="cinema-title">
                 <div className="cinema-text">DANH SÁCH RẠP</div>
           <div className="cinema-location">
@@ -336,7 +369,7 @@ function FilmDetail() {
                     </div>
                     </div>
                     <div className="cinema-address">{cinema.address}</div>
-                    <div className="cinema-room">Room : {cinema.room}</div>
+                    <div className="cinema-room">Room: {cinema.room}</div>
                     </div>
               ))) : (
                   <div className="no-cinemas">Phim hiện chưa có tại rạp này</div>
@@ -346,7 +379,7 @@ function FilmDetail() {
       }
 
       {showSelectTicket && 
-          <div className="ticket-container">
+          <div className="ticket-container" ref={ticketRef}>
               <div className="ticket-text-hp">CHỌN LOẠI VÉ</div>
               <div className="ticket-list">
                 {( listTickets.map((ticket, index) => (
@@ -362,7 +395,7 @@ function FilmDetail() {
 
       {
         showSelectSeat &&
-        <div className="seat-container">
+        <div className="seat-container" ref={seatRef}>
           <div class="screen">
               <div className="screen-text">MÀN CHIẾU</div>
               <div className="line"></div>

@@ -75,8 +75,12 @@
     right: 8px;
     color: #555;
     pointer-events: none; /* Icon không tương tác */
+    z-index: 1000;
   }
   
+  .search-icon :hover{
+    cursor: pointer;
+  }
   /*Login*/
   .login {
     display: flex;
@@ -161,4 +165,41 @@
 .promotion:hover,
 .introduce:hover {
   color: yellow; /* Màu chữ khi hover */
+}
+
+
+/*Search*/
+/* search */
+.search-results {
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-top: none;
+  max-height: 300px;
+  overflow-y: auto;
+  width: 100%;
+  z-index: 10;
+  margin-top: 45px;
+}
+
+.search-result-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.search-result-item:hover {
+  background-color: #f0f0f0;
+}
+
+.search-result-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.search-result-name {
+  font-size: 14px;
 }

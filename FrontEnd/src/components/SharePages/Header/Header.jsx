@@ -1,22 +1,24 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import "./Header.css";
 import { Search } from "react-feather";
 import { User } from "react-feather";
-import { Link } from "react-router-dom";
+import { Link, useNavigate  } from "react-router-dom";
 import { MapPin } from "react-feather";
 import { Link as ScrollLink } from "react-scroll";
 import UserContext from "../../User/UserContext.jsx";
 import { Button } from 'react-bootstrap';
+import axios from 'axios';
 
 function Header() {
   const { user, updateUser } = useContext(UserContext);
+  const navigate = useNavigate();
 
   const handleLogoClick = () => {
     window.scrollTo(0, 0); // Cuộn về đầu trang
   };
 
   const userInfo = user && user.length > 0 ? user[0] : null;
-  console.log(userInfo)
+  //console.log(userInfo)
   const [showLogout, setShowLogout] = useState(false);
   const handleUserClick = () => {
     setShowLogout(!showLogout);
@@ -26,7 +28,45 @@ function Header() {
     updateUser(null);
   };
   
-  
+   // Tìm kiếm
+const [searchQuery, setSearchQuery] = useState("");
+const [allFilms, setAllFilms] = useState([]);
+const [searchResults, setSearchResults] = useState([]);
+
+useEffect(() => {
+  const fetchFilms = async () => {
+    try {
+      const result = await axios.get('http://localhost:8080/films');
+      setAllFilms(result.data);
+    } catch (error) {
+      console.error("Error fetching films:", error);
+    }
+  };
+  fetchFilms();
+}, []);
+
+const handleSearchInputChange = (e) => {
+  const query = e.target.value;
+  setSearchQuery(query);
+
+  if (query.length > 0) {
+    const filteredFilms = allFilms.filter(film =>
+      film.filmName.toLowerCase().includes(query.toLowerCase())
+    );
+    setSearchResults(filteredFilms);
+  } else {
+    setSearchResults([]);
+  }
+};
+
+const handleSearchResultClick = (idfilm) => {
+  setSearchQuery(""); // Xóa nội dung tìm kiếm sau khi chọn phim
+  setSearchResults([]); // Ẩn kết quả tìm kiếm
+  navigate(`/filmdetail/${idfilm}`);
+};
+
+
+
   return (
     <div className="header">
       <div className="first-part">
@@ -44,17 +84,37 @@ function Header() {
             />
             <span style={{ cursor: "pointer" }}>ĐẶT VÉ NGAY</span>
           </div>
-        </ScrollLink>
+        </ScrollLink>     
+        
         <div className="search-bar">
           <input
-            type="text"
-            placeholder="Tìm phim, rạp, vé, tin tức..."
-            className="search-input"
+              type="text"
+              placeholder="Tìm phim, rạp, vé, tin tức..."
+              className="search-input"
+              value={searchQuery}
+              onChange={handleSearchInputChange}
           />
           <div className="search-icon">
-            <Search />
+              <Search />
           </div>
-        </div>
+            {searchResults.length > 0 && (
+                <div className="search-results">
+                  {searchResults.map((film) => (
+                    <div
+                      key={film.idfilm}
+                      className="search-result-item"
+                      onClick={() => handleSearchResultClick(film.idfilm)}
+                    >
+                    <img src={film.image} alt={film.filmName} className="search-result-image" />
+                    <span className="search-result-name">{film.filmName}</span>
+                    </div>
+                    ))}
+            </div>
+            )}
+          </div>
+
+
+
 
         <div className="login">
           <div className="login-icon">
