@@ -1,0 +1,153 @@
+.footer {
+  padding-top: 80px; /* Điều chỉnh giá trị padding-top ở đây */
+  width: 100%;
+  height: 50vh;
+  background: linear-gradient(106deg,  #663399, #3366cc 102.69%);
+}
+
+.footer-container {
+    display: flex;
+}
+
+.logo-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-footer {
+    margin-left: 200px;
+}
+
+.ticket-booking-footer {
+    display: flex; /* Đảm bảo chiều dài của border chỉ bao gồm nội dung */
+    padding: 10px; /* Tạo khoảng cách giữa border và nội dung */
+    border: 2px solid yellow; /* Đặt border và màu nền mặc định là màu vàng */
+    border-radius: 7px; /* Bo tròn góc của border */
+    transition: all 0.3s; /* Tạo hiệu ứng transition cho khi di chuột vào */
+    background-color: yellow;
+    margin-top: 20px;
+    width: 180px;
+    margin-left: 200px;
+  }
+  
+  .ticket-booking-footer:hover {
+    border-color: #4E4AB0;
+    background:  #4E4AB0; /* Gradient từ màu vàng sang màu xanh khi hover */
+    color: white;
+  }
+
+  .ticket-booking-footer img {
+    margin-left: 10px;
+  }
+  
+  .ticket-booking-footer span {
+    font-weight: bold; /* Đậm hơn */
+    color: black;
+  }
+
+  .account-footer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    margin-left: 250px;
+  }
+
+  .account-text-footer {
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .login-link-footer {
+    color: white;
+    font-size: 15px;
+    font-weight: 450;
+    margin-top: 10px;
+    text-decoration: none;
+  }
+
+  .membership-footer{
+    color: white;
+    font-size: 15px;
+    font-weight: 450;
+    margin-top: 10px;
+    text-decoration: none;
+  }
+
+  .membership-footer {
+    cursor: pointer;
+  }
+
+  .film-footer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    margin-left: 200px;
+  }
+
+  .film-text-footer {
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .movie-showing-footer, .movie-coming-soon-footer {
+    color: white;
+    font-size: 15px;
+    font-weight: 450;
+    margin-top: 10px;
+    text-decoration: none;
+  }
+
+  .movie-showing-footer,
+  .movie-coming-soon-footer {
+    cursor: pointer;
+  }
+  
+  .movie-showing-footer:hover,
+  .movie-coming-soon-footer:hover {
+    cursor: pointer;
+  }
+
+  .cinesta-footer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    margin-left: 180px;
+  }
+
+  .cinesta-text-footer {
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .introduce-footer, .contact-footer, .hiring-footer {
+    color: white;
+    font-size: 15px;
+    font-weight: 450;
+    margin-top: 10px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .line-footer {
+    display: flex;
+    position: absolute;
+    width: calc(100% - 380px); /* Chiều rộng của dấu gạch dưới */
+    height: 1px;
+    background-color: white;
+    margin-top: 30px;
+    margin-left: 190px; /* Canh giữa so với tổng chiều rộng của footer */
+}
+
+.second-part-footer {
+  position: relative;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 50px; /* Adjust this value to push the content down */
+  color:white;
+}

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./HomePage.css";
 import Header from "../SharePages/Header/Header.jsx";
+import Footer from "../SharePages/Footer/Footer.jsx";
 import { ChevronLeft, ChevronRight, Youtube } from "react-feather";
 import axios from "axios";
 import VideoPlayer from "./VideoPlayer.jsx";
@@ -175,7 +176,7 @@ function HomePage() {
           </div>
         </div>
 
-        <div className="movie-coming-soon">
+        <div id="movie-coming-soon" className="movie-coming-soon">
           <div className="mcs-text">PHIM SẮP CHIẾU</div>
           <div className="mcs-film">
             <ChevronLeft
@@ -251,6 +252,7 @@ function HomePage() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
