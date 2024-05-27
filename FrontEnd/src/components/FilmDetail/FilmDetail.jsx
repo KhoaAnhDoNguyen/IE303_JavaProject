@@ -17,15 +17,26 @@ import Header from "../SharePages/Header/Header.jsx";
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import UserContext from "../User/UserContext.jsx";
 
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+
 function FilmDetail() {
   //User
   const { user, updateUser } = useContext(UserContext);
+  const navigate = useNavigate();
   const userInfo = user && user.length > 0 ? user[0] : null;
   //console.log(userInfo.name)
 
   const cinemaRef = useRef(null);
   const ticketRef = useRef(null);
   const seatRef = useRef(null);
+  const bookingRef = useRef(null);
+  const filmRef = useRef(null);
+
   //Film
   const [film, setFilm] = useState({
     filmName: "",
@@ -87,6 +98,8 @@ function FilmDetail() {
       setShowSelectSeat(false);
       setSelectedCinema(null);
       setSelectedCinemaInfo(null);
+      setSelectedTicket(null);
+      setSelectedTicketInfo(null);
     } else {
       setSelectedShowtime(index); // Nếu chưa được chọn thì lưu chỉ số của showtime được chọn
       setShowSelectCinema(true); // Hiển thị "Chọn vé"
@@ -115,6 +128,8 @@ function FilmDetail() {
       setShowSelectSeat(false);
       setSelectedTicket(null);
       setSelectedTicketInfo(null);
+      setSelectedSeat(null); // Bỏ chọn ghế nếu đã được chọn trước đó
+      setShowBooking(false);
     }
     else {
       setSelectedCinema(index);
@@ -122,6 +137,11 @@ function FilmDetail() {
       setShowSelectTicket(true);
       loadTickets(listCinemas[index].id_cinema);
       loadSeats(listCinemas[index].id_cinema, listCinemas[index].room);
+      setSelectedTicket(null);
+      setSelectedTicketInfo(null);
+      setSelectedSeat(null);
+      setShowSelectSeat(false);
+      setShowBooking(false);
       setTimeout(() => {
         if (ticketRef.current) {
           ticketRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -176,12 +196,16 @@ function FilmDetail() {
     if (selectedTicket === index) {
       setSelectedTicket(null);
       setSelectedTicketInfo(null);
-      setShowSelectSeat(false)
+      setShowSelectSeat(false);
+      setShowBooking(false);
+      setSelectedSeat(null); // Bỏ chọn ghế nếu đã được chọn trước đó
     }
     else {
       setSelectedTicket(index);
       setSelectedTicketInfo(listTickets[index]);
       setShowSelectSeat(true);
+      setSelectedSeat(null);
+      setShowBooking(false);
       setTimeout(() => {
         if (seatRef.current) {
           seatRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -196,24 +220,30 @@ function FilmDetail() {
   const [boughtSeat, setBoughtSeat] = useState([])
   const boughtSeatList = boughtSeat.map(seat => seat.seat);
 
-  //console.log(boughtSeat)
   const loadSeats = async (id_cinema, room) => {
     const result = await axios.get(`http://localhost:8080/seats/${id_cinema}/${room}`);
     setListSeats(result.data);
   };
 
-
   const loadBoughtSeats = async (idFilm, idShowtime, idCinema, idSeat) => {
-    const result = await axios.get(`http://localhost:8080/bookings/1/${idFilm}/${idShowtime}/${idCinema}/${idSeat}`);
-    setBoughtSeat(result.data);
+    try {
+      const result = await axios.get(`http://localhost:8080/bookings/${idFilm}/${idShowtime}/${idCinema}/${idSeat}`);
+      setBoughtSeat(prev => [...prev, ...result.data]); // Append the results to the current state
+    } catch (error) {
+      console.error('Error loading bought seats:', error);
+    }
   };
+  
 
   useEffect(() => {
-    if (selectedShowtimeInfo !== null && selectedCinemaInfo !== null  && listSeats!== null ) {
-      loadBoughtSeats(1, idfilm, selectedShowtimeInfo.id_showtime, selectedCinemaInfo.id_cinema, 
-             listSeats.id_seat);
+    if (selectedShowtimeInfo !== null && selectedCinemaInfo !== null && listSeats.length > 0) {
+      const seatIds = listSeats.map(seat => seat.id_seat);
+      seatIds.forEach(idSeat => {
+        loadBoughtSeats(idfilm, selectedShowtimeInfo.id_showtime, selectedCinemaInfo.id_cinema, idSeat);
+      });
     }
   }, [selectedShowtimeInfo, selectedCinemaInfo, listSeats]);
+  
 
   const getAlphabetChar = index => {
     return String.fromCharCode(65 + index); // Chữ cái A có mã Unicode là 65
@@ -222,18 +252,113 @@ function FilmDetail() {
   const handleSeatClick = (seatLabel) => {
     if (boughtSeatList.includes(seatLabel)) {
       alert("Ghế đã có người đặt vui lòng chọn ghế khác");
+      setShowBooking(false);
     } else if (selectedSeat === seatLabel) {
       setSelectedSeat(null); // Bỏ chọn ghế nếu đã được chọn trước đó
+      setShowBooking(false);
     } else {
       setSelectedSeat(seatLabel); // Chọn ghế nếu chưa được chọn
+      setShowBooking(true);
+      setTimeLeft(300);
+      setTimeout(() => {
+        if (bookingRef.current) {
+          bookingRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 0);
     }
   };
 
-  
+  //Booking
+  const [showBooking, setShowBooking] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(300); // 5 minutes in seconds
+
+  useEffect(() => {
+  if (showBooking) {
+    const timer = setInterval(() => {
+      setTimeLeft(prevTime => {
+        if (prevTime <= 1) {
+          clearInterval(timer);
+          setSelectedSeat(null); // Hủy ghế đang chọn khi hết thời gian
+          setShowBooking(false);
+          return 0;
+        }
+        return prevTime - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }
+}, [showBooking]);
+
+  const formatTime = (timeInSeconds) => {
+  const minutes = Math.floor(timeInSeconds / 60);
+  const seconds = timeInSeconds % 60;
+  return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
+};
+  const [open, setOpen] = useState(false);
+  const handleClose = () => {
+    setOpen(false);
+    setSelectedShowtime(null);
+    setShowSelectCinema(false);
+    setSelectedCinema(null);
+    setShowSelectTicket(false);
+    setSelectedTicket(null);
+    setShowSelectSeat(false);
+    setShowBooking(false);
+    window.scrollTo(0, 0);
+    };
+
+  const handleBookingConfirmation = async () => {
+    if (!user) {
+      alert("Vui lòng đăng nhập để đặt vé!");
+      navigate(`/login`)
+    }
+    else{
+      const bookingData = {
+        id : userInfo.id,
+
+        idFilm : film.idfilm,
+        idShowtime :  selectedShowtimeInfo.id_showtime,
+        idCinema : selectedCinemaInfo.id_cinema,
+
+        idTicket : selectedTicketInfo.id_ticket,
+        idSeat : listSeats[0].id_seat,
+
+        filmName: film.filmName,
+        name_cinema: selectedCinemaInfo.name_cinema,
+        address: selectedCinemaInfo.address,
+        room: selectedCinemaInfo.room,
+        time_show: selectedShowtimeInfo.time_show,
+        day_show: selectedShowtimeInfo.day_show,
+        date_show: selectedShowtimeInfo.date_show,
+        year_show: selectedShowtimeInfo.year_show,
+        type_ticket: selectedTicketInfo.type_ticket,
+        name_ticket : selectedTicketInfo.name_ticket,
+        seat: selectedSeat,
+        price: selectedTicketInfo.price
+      };
+      console.log(bookingData)
+      try {
+        const response = await axios.post('http://localhost:8080/booking', bookingData);
+        setOpen(true);
+        /*setTimeout(() => {
+          if (filmRef.current) {
+            filmRef.current.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 0);*/
+      } catch (error) {
+        console.error('Error confirming booking:', error);
+        // Xử lý lỗi khi đặt vé thất bại, ví dụ: hiển thị thông báo lỗi
+      }
+
+    }
+  }
+
+
   return (
     <div className="filmdetail-container" id="filmDetail">
       <Header />
-      <div className="filmdetail-show">
+      <div className="filmdetail-show" ref={filmRef}>
         <img
           src={`.${film.image}`}
           alt="Film Poster"
@@ -429,6 +554,91 @@ function FilmDetail() {
         </div>
         </div>
       }
+
+{showBooking && selectedCinemaInfo!=null && selectedTicketInfo!=null &&
+  <div className="booking-container" ref={bookingRef}>
+    <div className="booking-part">
+      <div className="booking-payment">
+        <div className="booking-filmname">{film.filmName}</div>
+        <div className="booking-time">
+          THỜI GIAN GIỮ VÉ: 
+          <span className="countdown-timer">{formatTime(timeLeft)}</span>
+        </div>
+        <div className="booking-cinema">
+          <div className="booking-cinema-title">Thông tin rạp</div>
+          <div className="booking-cinema-name">{selectedCinemaInfo.name_cinema}</div>
+          <div className="booking-cinema-address">{selectedCinemaInfo.address}</div>
+        </div>
+        <div className="booking-time-title">Thời gian</div>
+        <div className="booking-time-detail">
+          <div className="booking-time-hour">{selectedShowtimeInfo.time_show}</div>
+          <div className="booking-time-day">{selectedShowtimeInfo.day_show}</div>
+          <div className="booking-time-date">{selectedShowtimeInfo.date_show}/{selectedShowtimeInfo.year_show}</div>
+        </div>
+        <div className="booking-ticket">
+          <div className="booking-room">
+            <div className="booking-room-title">Phòng chiếu</div>
+            <div className="booking-room-num">{selectedCinemaInfo.room}</div>
+          </div>
+          <div className="booking-number">
+            <div className="booking-number-title">Số vé</div>
+            <div className="booking-number-num">1</div>
+          </div>
+          <div className="booking-ticket-type">
+            <div className="booking-ticket-type-title">Loại vé</div>
+            <div className="booking-ticket-type-seat">{selectedTicketInfo.name_ticket}</div>
+          </div>
+        </div>
+        <div className="booking-seat">
+          <div className="booking-seat-type">
+            <div className="booking-seat-type-title">Loại ghế</div>
+            <div className="booking-seat-type-num">{selectedTicketInfo.type_ticket}</div>
+          </div>
+          <div className="booking-seat-num">
+            <div className="booking-seat-num-title">Số ghế</div>
+            <div className="booking-seat-num-number">{selectedSeat}</div>
+          </div>
+        </div>
+        <div class="dashed-line-horizontal"></div>
+        <div className="booking-payement">
+          <div className="booking-payment-title">SỐ TIỀN CẦN THANH TOÁN</div>
+          <div className="booking-payment-price">{selectedTicketInfo.price.toLocaleString('vi-VN')} VNĐ</div>
+        </div>
+      </div>
+      <div className="booking-check">
+      <div className="booking-warning">Vui lòng kiểm tra thông tin trước khi đặt vé</div>
+      <div className="booking-ticket-booking" onClick={handleBookingConfirmation}>
+            <img
+              src="/src/assets/ticket.png"
+              alt="Logo"
+              className="booking-ticket-icon"
+            />
+            <span style={{ cursor: "pointer" }}>XÁC NHẬN ĐẶT VÉ</span>
+      </div>
+        {/* Dialog thông báo mua vé thành công */}
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle id="alert-dialog-title">{"Mua vé thành công!"}</DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        Chúc mừng! Bạn đã mua vé thành công.
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose} autoFocus>
+                        OK
+                    </Button>
+                </DialogActions>
+            </Dialog>
+
+      </div>
+    </div>
+  </div>
+}
 
     </div>
   );

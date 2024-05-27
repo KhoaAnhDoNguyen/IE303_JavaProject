@@ -14,7 +14,7 @@ body {
   
 .filmdetail-show {
     display: flex;
-    margin-top: 50px; /* Điều chỉnh giá trị margin-top ở đây */
+    margin-top: 10px; /* Điều chỉnh giá trị margin-top ở đây */
     padding-top: 80px; /* Điều chỉnh giá trị padding-top ở đây */
     width: 100%;
     height: 110vh;
@@ -365,4 +365,235 @@ body {
   /* CSS cho các ghế đã được mua */
   background-color: #555555; /* Màu nền vàng */
   border-color: #555555;
+}
+
+/*Booking*/
+.booking-container {
+  width: 100%;
+  height: 110vh;
+  background: radial-gradient(
+    circle at 5% 5%,
+    #5C3EA4 0%,
+    #0F172A 50%,
+    #4159BF 110%
+  );
+  padding: 100px; /* Thêm padding để tạo khoảng cách */ 
+}
+
+.booking-part {
+  display: flex;
+}
+
+.booking-payment {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  background-color: #3366CC;
+  padding: 20px; /* Adjust padding as needed */
+  width: 50%; /* You can set this to any desired width, e.g., 300px */
+  height: 70vh; /* You can set this to any desired height, e.g., 200px */
+  margin-top: 70px;
+  margin-left: 90px;
+}
+
+.booking-filmname{
+  color: white;
+  font-size: 25px;
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+.booking-time {
+  color: white;
+  margin-left: 20px;
+  margin-top: 15px;
+}
+
+.countdown-timer {
+  color: #0F172A;
+  background-color:  yellow;
+  padding: 5px 10px;
+  margin-left: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.booking-cinema-title {
+  color:yellow;
+  margin-left: 20px;
+  margin-top: 17px;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.booking-cinema-name{
+  color:white;
+  margin-left: 20px;
+  margin-top: 1px;
+  font-size: 24px;
+}
+
+.booking-cinema-address{
+  color:white;
+  margin-left: 20px;
+  font-size: 15px;
+}
+
+.booking-time-title{
+  color:yellow;
+  margin-left: 20px;
+  margin-top: 17px;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.booking-time-detail{
+  display: flex;
+  margin-left: 20px;
+  margin-top: 5px;
+}
+
+.booking-time-hour{
+  color:white;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.booking-time-day {
+  color:white;
+  font-size: 20px;
+  font-weight: 700;
+  margin-left: 10px;
+}
+
+.booking-time-date{
+  color:white;
+  font-size: 20px;
+  font-weight: 700;
+  margin-left: 10px;
+}
+
+.booking-ticket{
+  display: flex;
+  margin-left: 20px;
+  margin-top: 17px;
+}
+
+.booking-room-title, .booking-number-title, .booking-ticket-type-title{
+  color: yellow;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.booking-number-title, .booking-ticket-type-title{
+  margin-left: 35px;
+}
+
+.booking-room-num, .booking-number-num, .booking-ticket-type-seat{
+  color:white;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.booking-number-num, .booking-ticket-type-seat{
+  margin-left: 35px;
+}
+
+.booking-seat{
+  display: flex;
+  margin-left: 20px;
+  margin-top: 17px;
+}
+
+.booking-seat-type-title, .booking-seat-num-title{
+  color: yellow;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.booking-seat-num-title{
+  margin-left: 60px;
+}
+
+.booking-seat-type-num, .booking-seat-num-number{
+  color:white;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.booking-seat-num-number{
+  margin-left: 60px;
+}
+
+.dashed-line-horizontal {
+  border-top: 2px dashed white; /* Độ dày, kiểu và màu của đường gạch đứt */
+  width: 90%; /* Chiều rộng của đường gạch đứt */
+  margin: 20px 0; /* Khoảng cách trên và dưới của đường gạch đứt */
+  margin-left: 18px;
+}
+
+.booking-payement {
+  display: flex;
+  margin-left: 20px;
+  margin-top: 0px;
+}
+
+.booking-payment-title{
+  color: yellow;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.booking-payment-price{
+  color:white;
+  font-size: 25px;
+  font-weight:bold;
+  margin-left: 150px;
+}
+
+.booking-warning{
+  color:white;
+  font-size: 25px;
+  font-weight:bold;
+  margin-left: 25px;
+  margin-top: 250px;
+}
+
+
+.booking-ticket-booking {
+  padding: 10px; /* Tạo khoảng cách giữa border và nội dung */
+  border: 2px solid yellow; /* Đặt border và màu nền mặc định là màu vàng */
+  border-radius: 7px; /* Bo tròn góc của border */
+  transition: all 0.3s; /* Tạo hiệu ứng transition cho khi di chuột vào */
+  background-color: yellow;
+  margin-top: 250px;
+  height: 50px;
+  width: 520px;
+  margin-left: 20px;
+}
+
+.booking-ticket-booking:hover {
+  border-color: #4E4AB0;
+  background:  #4E4AB0; /* Gradient từ màu vàng sang màu xanh khi hover */
+  color: white;
+}
+
+.booking-ticket-booking img {
+  margin-right: 5px; /* Khoảng cách giữa ảnh và chữ */
+  margin-left: 180px;
+}
+
+.booking-ticket-booking span {
+  font-weight: bold; /* Đậm hơn */
+  color: black;
+}
+
+.booking-ticket-booking:hover span {
+  color: white; /* Chuyển màu chữ sang trắng khi hover */
+}  
+
+.booking-check {
+  display: flex;
+  flex-direction: column;
 }
