@@ -10,7 +10,9 @@ import {
   PlayCircle,
   Bold,
   Underline,
-  MapPin
+  MapPin,
+  User,
+  Star
 } from "react-feather";
 import VideoPlayer from "../HomePage/VideoPlayer.jsx";
 import Header from "../SharePages/Header/Header.jsx";
@@ -23,6 +25,9 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import Typography from '@mui/material/Typography';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import { Rating, TextField} from '@mui/material';
 
 function FilmDetail() {
   //User
@@ -295,9 +300,13 @@ function FilmDetail() {
   const seconds = timeInSeconds % 60;
   return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
 };
+
   const [open, setOpen] = useState(false);
+  const [openLoginDialog, setOpenLoginDialog] = useState(false);
+
   const handleClose = () => {
     setOpen(false);
+    setOpenComment(false);
     setSelectedShowtime(null);
     setShowSelectCinema(false);
     setSelectedCinema(null);
@@ -308,10 +317,18 @@ function FilmDetail() {
     window.scrollTo(0, 0);
     };
 
+    const handleCmtClose = () => {
+      setOpenComment(false);
+    }
+
+    const handleLoginDialogClose = () => {
+      setOpenLoginDialog(false);
+      navigate(`/login`)
+    };
+
   const handleBookingConfirmation = async () => {
     if (!user) {
-      alert("Vui lòng đăng nhập để đặt vé!");
-      navigate(`/login`)
+      setOpenLoginDialog(true);
     }
     else{
       const bookingData = {
@@ -341,11 +358,9 @@ function FilmDetail() {
       try {
         const response = await axios.post('http://localhost:8080/booking', bookingData);
         setOpen(true);
-        /*setTimeout(() => {
-          if (filmRef.current) {
-            filmRef.current.scrollIntoView({ behavior: 'smooth' });
-          }
-        }, 0);*/
+         // Reset rating and comment
+        setRating(0);
+        setComment("");
       } catch (error) {
         console.error('Error confirming booking:', error);
         // Xử lý lỗi khi đặt vé thất bại, ví dụ: hiển thị thông báo lỗi
@@ -354,6 +369,77 @@ function FilmDetail() {
     }
   }
 
+  //Rating
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState("");
+  const [openLoginDialogComment, setOpenLoginDialogComment] = useState(false);
+  const [openComment, setOpenComment] = useState(false);
+  const [listComment, setListComment] = useState([])
+  const [currentCmtIndex, setCurrentCmtIndex] = useState(0);
+
+  const loadCommets = async (idfilm) => {
+    const result = await axios.get(`http://localhost:8080/userfilm/${idfilm}`);
+    setListComment(result.data);
+  };
+  console.log(listComment);
+
+  useEffect(() => {
+    loadCommets(idfilm);
+  }, []);
+
+  const handleNext = () => {
+    if (currentCmtIndex + 3 < listComment.length) {
+      setCurrentCmtIndex(currentCmtIndex + 3);
+    }
+  };
+
+  const handlePrev = () => {
+    if (currentCmtIndex - 3 >= 0) {
+      setCurrentCmtIndex(currentCmtIndex - 3);
+    }
+  };
+
+  const displayedComments = listComment.slice(currentCmtIndex, currentCmtIndex + 3);
+
+  const handleLoginDialogCommentClose = () => {
+    setOpenLoginDialogComment(false);
+    navigate(`/login`);
+  };
+  
+  const handleRatingChange = (event, newValue) => {
+    if (newValue === null)
+      setRating(0);
+    else
+      setRating(newValue);
+  };
+  
+  const handleCommentChange = (event) => {
+    setComment(event.target.value);
+  };
+  
+  const handleSubmitComment = async () => {
+    if (!user) { // Check if the user is not logged in
+      setOpenLoginDialogComment(true); // Show the login dialog
+      return; // Exit the function if the user is not logged in
+    }
+    else {
+    const commentData = {
+      idUser : userInfo.id,
+      idFilm : idfilm,
+      name : userInfo.name,
+      star : rating,
+      comments : comment
+    }
+    console.log(commentData)
+    try {
+      const response = await axios.post('http://localhost:8080/userfilm', commentData);
+      setOpenComment(true);
+      loadCommets(idfilm);
+    } catch (error) {
+      console.error('Error confirming booking:', error);
+    }
+  }};
+  
 
   return (
     <div className="filmdetail-container" id="filmDetail">
@@ -615,30 +701,176 @@ function FilmDetail() {
             />
             <span style={{ cursor: "pointer" }}>XÁC NHẬN ĐẶT VÉ</span>
       </div>
-        {/* Dialog thông báo mua vé thành công */}
-            <Dialog
+        <Dialog
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
+                PaperProps={{
+                    style: { 
+                        padding: '20px', 
+                        textAlign: 'center', 
+                        borderRadius: '10px' 
+                    },
+                }}
             >
-                <DialogTitle id="alert-dialog-title">{"Mua vé thành công!"}</DialogTitle>
+                <DialogTitle id="alert-dialog-title">
+                    <CheckCircleOutlineIcon style={{ fontSize: '3rem', color: 'green' }} />
+                </DialogTitle>
                 <DialogContent>
+                    <Typography variant="h5" gutterBottom>
+                        Mua vé thành công!
+                    </Typography>
                     <DialogContentText id="alert-dialog-description">
                         Chúc mừng! Bạn đã mua vé thành công.
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose} autoFocus>
+                    <Button 
+                        onClick={handleClose} 
+                        style={{ 
+                            backgroundColor: 'red', 
+                            color: 'white',
+                            padding: '10px 20px'
+                        }}
+                    >
                         OK
                     </Button>
                 </DialogActions>
             </Dialog>
 
+
+            <Dialog
+        open={openLoginDialog}
+        onClose={handleLoginDialogClose}
+      >
+        <DialogTitle>{"Yêu cầu đăng nhập"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Vui lòng đăng nhập để tiếp tục đặt vé.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleLoginDialogClose} color="primary" autoFocus>
+            Đóng
+          </Button>
+        </DialogActions>
+      </Dialog>
       </div>
     </div>
   </div>
 }
+  
+<div className="rating-container">
+    <div className="rating-title">ĐÁNH GIÁ</div>
+    {/* Giao diện đánh giá sao */}
+    <div className="rating-section">
+      <Rating
+        name="film-rating"
+        value={rating}
+        onChange={handleRatingChange}
+        max={5}
+      />
+    </div>
+
+    {/* Ô để nhập đánh giá */}
+    <div className="comment-section">
+      <TextField
+        id="comment"
+        label="Nhập đánh giá của bạn"
+        multiline
+        rows={4}
+        value={comment}
+        onChange={handleCommentChange}
+        variant="outlined"
+      />
+    </div>
+
+    {/* Nút gửi đánh giá */}
+    <div className="submit-button-cmt">
+      <Button variant="contained" color="primary" onClick={handleSubmitComment}>
+        Gửi đánh giá
+      </Button>
+    </div>
+
+    <Dialog
+      open={openLoginDialogComment}
+      onClose={handleLoginDialogCommentClose}
+    >
+      <DialogTitle>{"Yêu cầu đăng nhập"}</DialogTitle>
+      <DialogContent>
+        <DialogContentText>
+          Vui lòng đăng nhập để gửi đánh giá phim!
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleLoginDialogCommentClose} color="primary" autoFocus>
+          Đóng
+        </Button>
+      </DialogActions>
+    </Dialog>
+
+
+    <Dialog
+                open={openComment}
+                onClose={handleCmtClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+                PaperProps={{
+                    style: { 
+                        padding: '20px', 
+                        textAlign: 'center', 
+                        borderRadius: '10px' 
+                    },
+                }}
+            >
+                <DialogTitle id="alert-dialog-title">
+                    <CheckCircleOutlineIcon style={{ fontSize: '3rem', color: 'green' }} />
+                </DialogTitle>
+                <DialogContent>
+                    <Typography variant="h5" gutterBottom>
+                        Gửi phản hồi thành công!
+                    </Typography>
+                    <DialogContentText id="alert-dialog-description">
+                        Cảm ơn bạn đã đánh giá phim. Chúc bạn xem phim vui vẻ!
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button 
+                        onClick={handleCmtClose} 
+                        style={{ 
+                            backgroundColor: 'red', 
+                            color: 'white',
+                            padding: '10px 20px'
+                        }}
+                    >
+                        OK
+                    </Button>
+                </DialogActions>
+            </Dialog>
+
+            <div>
+          <div className="cmt-title">Đánh giá của người xem</div>
+      {displayedComments.map((comment, index) => (
+        <div key={index} className="comment">
+          <div className="comment-header">
+            <User size={25} color="white" />
+            <div className="comment-name">{comment.name}</div>
+            <div className="comment-stars">
+              {[...Array(comment.star)].map((_, i) => (
+                <Star key={i} size={20} style={{ color: 'yellow' }} />
+              ))}
+            </div>
+          </div>
+          <div className="comment-text">{comment.comments}</div>
+        </div>
+      ))}
+      <div className="navigation-buttons">
+        <button onClick={handlePrev} disabled={currentCmtIndex === 0} className="prev-button">Trước đó</button>
+        <button onClick={handleNext} disabled={currentCmtIndex + 3 >= listComment.length} className="next-button">Tiếp theo</button>
+      </div>
+    </div>
+  </div>
 
     </div>
   );

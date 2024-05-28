@@ -597,3 +597,143 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+/*Rating*/
+.rating-title {
+  color: white;
+  font-weight: bold;
+  margin-left: 200px;
+  font-size: 45px;
+  margin-bottom: 30px;
+}
+
+.rating-container{
+  display: flex;
+  flex-direction: column;
+    padding-top: 65px; /* Điều chỉnh giá trị padding-top ở đây */
+    width: 100%;
+    height: 130vh;
+    background: radial-gradient(
+      circle at 5% 5%, /* Vị trí xuất hiện của màu thứ nhất */
+      #5C3EA4 0%, /* Màu thứ hai */
+      #0F172A 50%, /* Màu thứ nhất */
+      #4159BF 110% /* Màu thứ ba */
+    );
+}
+
+.rating-section{
+  margin-left: 250px;
+}
+
+.rating-section .MuiRating-icon {
+  font-size: 36px; /* Đặt kích thước cho ngôi sao */
+  color: gold; /* Đặt màu cho ngôi sao */
+  margin-left: 10px;
+}
+
+
+.comment-section  {
+  width: 50%; /* Đặt chiều rộng của phần tử comment-section */
+  margin-left: 260px; /* Đẩy phần tử về bên phải */
+  margin-top: 20px;
+}
+
+.comment-section .MuiInputBase-root{
+  width: 350%;
+  color: white; 
+}
+
+.comment-section .MuiInputBase-root {
+  color: white; /* Đặt màu chữ cho ô nhập comment */
+}
+
+.comment-section .MuiOutlinedInput-input {
+  padding: 15px; /* Tăng chiều cao của ô nhập comment */ 
+}
+
+.comment-section .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+  border-color: white; /* Đặt màu viền cho ô nhập comment */
+}
+
+.comment-section .MuiFormLabel-root {
+  color: white; /* Đặt màu cho chữ "Nhập đánh giá của bạn" */
+}
+
+
+.submit-button-cmt {
+  position: relative;
+  margin-top: -37px;
+  margin-left: 1100px;
+}
+
+/*Cmt*/
+.comment {
+  border-bottom: 1px solid #ccc;
+  padding: 5px 0;
+  margin-top: 30px;
+  margin-left: 200px;
+  margin-right: 200px;
+}
+
+.comment-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.comment-stars {
+  display: flex;
+  gap: 5px;
+  color: gold;
+}
+
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+button {
+  padding: 5px 10px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.comment-name {
+  color: white;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.comment-text {
+  color: white;
+  margin-top: 4px;
+}
+
+.prev-button {
+  margin-left: 200px;
+  margin-top: 25px;
+  border-radius: 2px;
+}
+
+.next-button {
+  margin-right: 200px;
+  margin-top: 25px;
+  border-radius: 2px;
+}
+
+.cmt-title{
+  font-size: 45px;
+  margin-left: 200px;
+  font-weight: bold;
+  color: white;
+  margin-top: 60px;
+}
