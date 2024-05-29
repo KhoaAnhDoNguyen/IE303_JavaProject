@@ -18,15 +18,14 @@ public class BookingController {
         return bookingRepository.save(newBooking);
     }
 
-    @GetMapping("/bookings/{id}/{idFilm}/{idShowtime}/{idCinema}/{idSeat}")
+    @GetMapping("/bookings/{idFilm}/{idShowtime}/{idCinema}/{idSeat}")
     public List<Booking> getBookingsByMultipleParams(
-            @PathVariable Long id,
             @PathVariable Long idFilm,
             @PathVariable Long idShowtime,
             @PathVariable Long idCinema,
             @PathVariable Long idSeat) {
-        return bookingRepository.findByIdAndIdFilmAndIdShowtimeAndIdCinemaAndIdSeat(
-                id, idFilm, idShowtime, idCinema,  idSeat);
+        return bookingRepository.findByIdFilmAndIdShowtimeAndIdCinemaAndIdSeat(
+                idFilm, idShowtime, idCinema,  idSeat);
     }
 
 }
