@@ -2,7 +2,6 @@
 .homepage-container {
   min-height: 100vh;
   margin-top: 0; /* Giảm giá trị margin-top hoặc đặt là 0 */
-  background-image: linear-gradient(to bottom, #0F172A, #4159BF);
 }
 
 .homepage-main {
@@ -11,16 +10,27 @@
   font-family:  "Anton", sans-serif;
 }
 
+.homepage-body{
+  background: radial-gradient(
+    circle at 5% 5%, /* Vị trí xuất hiện của màu thứ nhất */
+    #5C3EA4 0%, /* Màu thứ hai */
+    #0F172A 50%, /* Màu thứ nhất */
+    #4159BF 110% /* Màu thứ ba */
+  );
+}
+
 /*Poster*/
 .poster {
-  margin-top: 160px; /* Điều chỉnh giá trị margin-top tại đây */
+  margin-top: 40px; /* Điều chỉnh giá trị margin-top tại đây */
   width: 80%;
   height: 53vh;
   margin-left: 150px;
+  margin-bottom: 60px;
 }
 
 .img-fluid{
   width: 1150px;
+  margin-top: 140px;
 }
 
 /*Phim đang chiếu*/
@@ -29,12 +39,6 @@
   flex-direction: column;
   width: 100%;
   height: 110vh;
-  background: radial-gradient(
-    circle at 5% 5%, /* Vị trí xuất hiện của màu thứ nhất */
-    #5C3EA4 0%, /* Màu thứ hai */
-    #0F172A 50%, /* Màu thứ nhất */
-    #4159BF 110% /* Màu thứ ba */
-  );
 }
 
 
@@ -173,12 +177,6 @@
   flex-direction: column;
   width: 100%;
   height: 110vh;
-  background: radial-gradient(
-    circle at 5% 5%, /* Vị trí xuất hiện của màu thứ nhất */
-    #5C3EA4 0%, /* Màu thứ hai */
-    #0F172A 50%, /* Màu thứ nhất */
-    #4159BF 110% /* Màu thứ ba */
-  );
 }
 
 .mcs-text {

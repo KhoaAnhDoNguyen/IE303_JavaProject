@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useContext } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams, useLocation  } from "react-router-dom";
 import "./FilmDetail.css";
 import axios from "axios";
 import {
@@ -27,13 +27,15 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Typography from '@mui/material/Typography';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import { Rating, TextField} from '@mui/material';
+import { Rating, SpeedDialAction, TextField} from '@mui/material';
 
 function FilmDetail() {
   //User
   const { user, updateUser } = useContext(UserContext);
   const navigate = useNavigate();
   const userInfo = user && user.length > 0 ? user[0] : null;
+  const location = useLocation();
+
   //console.log(userInfo.name)
 
   const cinemaRef = useRef(null);
@@ -224,6 +226,7 @@ function FilmDetail() {
   const [selectedSeat, setSelectedSeat] = useState(null);
   const [boughtSeat, setBoughtSeat] = useState([])
   const boughtSeatList = boughtSeat.map(seat => seat.seat);
+  const [openSeatDialog, setOpenSeatDialog] = useState(false);
 
   const loadSeats = async (id_cinema, room) => {
     const result = await axios.get(`http://localhost:8080/seats/${id_cinema}/${room}`);
@@ -256,7 +259,7 @@ function FilmDetail() {
   
   const handleSeatClick = (seatLabel) => {
     if (boughtSeatList.includes(seatLabel)) {
-      alert("Ghế đã có người đặt vui lòng chọn ghế khác");
+      setOpenSeatDialog(true);
       setShowBooking(false);
     } else if (selectedSeat === seatLabel) {
       setSelectedSeat(null); // Bỏ chọn ghế nếu đã được chọn trước đó
@@ -323,8 +326,8 @@ function FilmDetail() {
 
     const handleLoginDialogClose = () => {
       setOpenLoginDialog(false);
-      navigate(`/login`)
-    };
+      navigate('/login', { state: { from: location } });
+        };
 
   const handleBookingConfirmation = async () => {
     if (!user) {
@@ -354,14 +357,25 @@ function FilmDetail() {
         seat: selectedSeat,
         price: selectedTicketInfo.price
       };
-      console.log(bookingData)
+      //console.log(bookingData)
       try {
-        const response = await axios.post('http://localhost:8080/booking', bookingData);
+        const bookingResponse = await axios.post('http://localhost:8080/booking', bookingData);
         setOpen(true);
-         // Reset rating and comment
+        // Reset rating and comment
         setRating(0);
         setComment("");
-      } catch (error) {
+        console.log(bookingResponse.status)
+        if (bookingResponse.status === 200) {
+          const emailData = {
+            email: userInfo.email,  // Giả sử email người dùng có sẵn trong userInfo
+            seatName: selectedSeat,  // Giả sử selectedSeat là tên ghế
+            message: "Cảm ơn bạn đã đặt vé!"  // Thông điệp tùy chỉnh
+          };
+  
+          await axios.post('http://localhost:8080/send-email', emailData);
+        }
+      }
+      catch (error) {
         console.error('Error confirming booking:', error);
         // Xử lý lỗi khi đặt vé thất bại, ví dụ: hiển thị thông báo lỗi
       }
@@ -376,12 +390,19 @@ function FilmDetail() {
   const [openComment, setOpenComment] = useState(false);
   const [listComment, setListComment] = useState([])
   const [currentCmtIndex, setCurrentCmtIndex] = useState(0);
+  const [averageRating, setAverageRating] = useState(0);
 
   const loadCommets = async (idfilm) => {
     const result = await axios.get(`http://localhost:8080/userfilm/${idfilm}`);
-    setListComment(result.data);
+    const comments = result.data;
+    setListComment(result.data.reverse());
+    if (comments.length > 0) {
+      const totalStars = comments.reduce((sum, comment) => sum + comment.star, 0);
+      const avgRating = (totalStars / comments.length).toFixed(1); // Làm tròn đến 1 chữ số
+      setAverageRating(parseFloat(avgRating)); // Chuyển đổi thành số để loại bỏ số 0 không cần thiết
+    }
   };
-  console.log(listComment);
+  console.log(averageRating);
 
   useEffect(() => {
     loadCommets(idfilm);
@@ -403,8 +424,8 @@ function FilmDetail() {
 
   const handleLoginDialogCommentClose = () => {
     setOpenLoginDialogComment(false);
-    navigate(`/login`);
-  };
+    navigate('/login', { state: { from: location } });
+    };
   
   const handleRatingChange = (event, newValue) => {
     if (newValue === null)
@@ -444,7 +465,8 @@ function FilmDetail() {
   return (
     <div className="filmdetail-container" id="filmDetail">
       <Header />
-      <div className="filmdetail-show" ref={filmRef}>
+      <div className="filmdetail-st" ref={filmRef}>
+      <div className="filmdetail-show">
         <img
           src={`.${film.image}`}
           alt="Film Poster"
@@ -457,6 +479,7 @@ function FilmDetail() {
             <span style={{ color: "white", marginLeft: 15, fontSize: 20 }}>
               {film.type}
             </span>
+            <span className="rating-ave">{averageRating} <Star/></span>
           </div>
           <div style={{ marginTop: 10 }}>
             <Clock size={30} color="yellow" />
@@ -552,7 +575,7 @@ function FilmDetail() {
           <div className="no-showtime">Phim hiện chưa có lịch chiếu</div>
         )}
       </div>
-
+      </div>
       {showSelectCinema && 
         <div className="cinema-container" ref={cinemaRef}>
           <div className="cinema-title">
@@ -611,8 +634,6 @@ function FilmDetail() {
               <div className="screen-text">MÀN CHIẾU</div>
               <div className="line"></div>
           </div>
-
-
           <div className="seat-plan">
           {listSeats.map(seat => (
               <div key={seat.id_seat}>
@@ -638,6 +659,24 @@ function FilmDetail() {
             </div>
             ))}
         </div>
+         <Dialog
+      open={openSeatDialog}
+      onClose={() => setOpenSeatDialog(false)}
+      aria-labelledby="alert-dialog-title"
+      aria-describedby="alert-dialog-description"
+    >
+      <DialogTitle id="alert-dialog-title">{"Thông báo"}</DialogTitle>
+      <DialogContent>
+        <DialogContentText id="alert-dialog-description">
+          Ghế đã có người đặt vui lòng chọn ghế khác.
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={() => setOpenSeatDialog(false)} color="primary">
+          Đóng
+        </Button>
+      </DialogActions>
+        </Dialog>
         </div>
       }
 

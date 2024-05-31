@@ -105,6 +105,8 @@ function HomePage() {
     <div className="homepage-container">
       <Header />
       <div className="homepage-main">
+
+        <div className="homepage-body">
         <div className="poster">
           <Slider {...settings}>
             <div className="text-center d-flex justify-content-center align-items-center">
@@ -228,7 +230,7 @@ function HomePage() {
             />
           </div>
         </div>
-
+        </div>
         <div className="membership">
           <img
             src=".\src\assets\Membership\member-bg.webp"

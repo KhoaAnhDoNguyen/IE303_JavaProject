@@ -11,19 +11,21 @@ body {
 }
 
 
-  
+.filmdetail-st {
+  background: radial-gradient(
+    circle at 5% 5%, /* Vị trí xuất hiện của màu thứ nhất */
+    #5C3EA4 0%, /* Màu thứ hai */
+    #0F172A 50%, /* Màu thứ nhất */
+    #4159BF 110% /* Màu thứ ba */
+  );
+}
+
 .filmdetail-show {
     display: flex;
     margin-top: 10px; /* Điều chỉnh giá trị margin-top ở đây */
     padding-top: 80px; /* Điều chỉnh giá trị padding-top ở đây */
     width: 100%;
     height: 110vh;
-    background: radial-gradient(
-      circle at 5% 5%, /* Vị trí xuất hiện của màu thứ nhất */
-      #5C3EA4 0%, /* Màu thứ hai */
-      #0F172A 50%, /* Màu thứ nhất */
-      #4159BF 110% /* Màu thứ ba */
-    );
 }
 
 .filmdetail-img {
@@ -50,12 +52,6 @@ body {
 .showtimes {
     width: 100%;
     height: 50vh;
-    background: radial-gradient(
-      circle at 5% 5%, /* Vị trí xuất hiện của màu thứ nhất */
-      #5C3EA4 0%, /* Màu thứ hai */
-      #0F172A 50%, /* Màu thứ nhất */
-      #4159BF 110% /* Màu thứ ba */
-    );
 }
 
 .showtimes-text {
@@ -113,7 +109,7 @@ body {
 /*Cinema*/
 .cinema-container {
   width: 100%;
-  height: 90vh;
+  height: 100vh;
   background: radial-gradient(
     circle at 5% 5%,
     #5C3EA4 0%,
@@ -128,6 +124,7 @@ body {
 }
 
 .cinema-text {
+  margin-top: 70px;
   color: white;
   font-size: 42px;
   font-weight: bold;
@@ -136,7 +133,7 @@ body {
 
 .cinema-location {
   margin-left: 405px; /* Đẩy danh sách location cinema sang bên phải */
-  margin-top: 20px;
+  margin-top: 90px;
 }
 
 .selected-cinema {
@@ -227,7 +224,7 @@ body {
 /*Ticket*/
 .ticket-container {
   width: 100%;
-  height: 70vh;
+  height: 100vh;
   background: radial-gradient(
     circle at 5% 5%,
     #5C3EA4 0%,
@@ -242,6 +239,7 @@ body {
   color: white; /* màu trắng */
   font-size: 42px; /* kích thước chữ */
   font-weight: bold;
+  margin-top: 120px;
 }
 
 .ticket-list {
@@ -613,12 +611,7 @@ body {
     padding-top: 65px; /* Điều chỉnh giá trị padding-top ở đây */
     width: 100%;
     height: 130vh;
-    background: radial-gradient(
-      circle at 5% 5%, /* Vị trí xuất hiện của màu thứ nhất */
-      #5C3EA4 0%, /* Màu thứ hai */
-      #0F172A 50%, /* Màu thứ nhất */
-      #4159BF 110% /* Màu thứ ba */
-    );
+    background: linear-gradient(106deg,  #663399, #3366cc 102.69%);
 }
 
 .rating-section{
@@ -736,4 +729,11 @@ button:disabled {
   font-weight: bold;
   color: white;
   margin-top: 60px;
+}
+
+.rating-ave{
+  margin-left: 200px;
+  font-size: 20px;
+  color: gold;
+  font-weight: bold;
 }
