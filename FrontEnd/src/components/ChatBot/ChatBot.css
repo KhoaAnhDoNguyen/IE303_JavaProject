@@ -1,0 +1,83 @@
+.chatbot-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    height: 400px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Tắt việc hiển thị các phần tử vượt ra ngoài khung */
+    display: flex;
+    flex-direction: column; /* Đảo ngược thứ tự của các phần tử trong cột */
+  }
+  
+  .chat-content {
+    flex: 1; /* Tự mở rộng để lấp đầy không gian còn trống */
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    margin-top: 50px;
+  }
+  
+  .message {
+    padding: 8px 12px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    max-width: 70%;
+  }
+  
+  .user {
+    align-self: flex-end;
+    background-color: #007bff;
+    color: #fff;
+    margin-right: 10px;
+  }
+  
+  .bot {
+    align-self: flex-start;
+    background-color: #e5e5e5;
+    color: #000;
+    margin-left: 10px;
+  }
+  
+  .input-container {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    width: 100%;
+  }
+  
+  .input-container input {
+    flex: 1;
+    height: 40px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+  }
+  
+  .input-container button {
+    height: 40px;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .input-container button:hover {
+    background-color: #0056b3;
+  }
+  
+  .close-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    border: none;
+    background-color: transparent;
+    color: #000;
+    cursor: pointer;
+  }
+  

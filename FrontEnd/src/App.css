@@ -2,3 +2,26 @@
 body {
   font-family: "Josefin Sans", sans-serif; /* Thay đổi 'Arial' thành phông chữ bạn muốn sử dụng */
 }
+
+/* ChatBot.css */
+
+.support-button {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  width: 70px; /* Đặt kích thước cho ô hỗ trợ */
+  height: 70px; /* Đặt kích thước cho ô hỗ trợ */
+  background-color: white; /* Màu nền của ô hỗ trợ */
+  border-radius: 50%; /* Đặt ô hỗ trợ thành hình tròn */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 999; /* Đảm bảo ô hỗ trợ hiển thị trên tất cả các phần khác */
+}
+
+.support-button img {
+  width: 50px; /* Đặt kích thước cho hình ảnh bot-icon */
+  height: auto;
+  filter: invert(1); /* Đảo ngược màu sắc của hình ảnh (nếu cần) */
+}
