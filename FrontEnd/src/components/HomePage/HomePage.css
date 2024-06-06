@@ -41,7 +41,6 @@
   height: 110vh;
 }
 
-
 .ms-text {
   display: flex;
   flex-direction: column; /* Hiển thị các phần tử con theo chiều dọc */
@@ -171,12 +170,12 @@
 /**/
 
 
-/*Phim sắp chiếu*/
+/* Phim sắp chiếu */
 .movie-coming-soon {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 110vh;
+  height: 130vh;
 }
 
 .mcs-text {
@@ -184,7 +183,6 @@
   flex-direction: column; /* Hiển thị các phần tử con theo chiều dọc */
   align-items: center;
   justify-content: center;
-
   margin-top: 100px;
   color: white; /* Màu trắng */
   font-size: 33px; /* Kích thước phóng to */
@@ -196,16 +194,18 @@
   margin-top: 50px;
 }
 
-.mcs-film-detail{
+.mcs-film-detail {
   display: flex;
   flex-direction: column; /* Hiển thị các phần tử con theo chiều dọc */
+  justify-content: space-between; /* Giãn đều các phần tử con */
   margin-right: 10px; /* Tạo khoảng cách bên phải mỗi bộ phim, trừ bộ phim cuối cùng */
   margin-left: 40px;
+  height: 600px; /* Chiều cao cố định */
 }
 
 .mcs-film-img {
   width: auto; /* Độ rộng của ảnh phim */
-  height: 400px; /* Chiều cao tự động điều chỉnh để giữ tỷ lệ */  
+  height: 400px; /* Chiều cao tự động điều chỉnh để giữ tỷ lệ */
 }
 
 .mcs-film-title {
@@ -216,7 +216,6 @@
   font-weight: bold; /* Chữ in đậm */
 }
 
-
 .mcs-film-detail {
   position: relative; /* Thiết lập vị trí tương đối để chúng ta có thể dịch chuyển ảnh phim */
 }
@@ -225,13 +224,14 @@
   transition: transform 0.3s ease; /* Hiệu ứng mượt mà khi di chuyển */
 }
 
-.mcs-film-img:hover  {
+.mcs-film-img:hover {
   transform: translateY(-10px); /* Di chuyển ảnh lên trên một chút khi hover */
   color: yellow; /* Chuyển màu chữ sang màu vàng khi hover */
   filter: brightness(150%); /* Tăng độ sáng của ảnh khi hover */
 }
 
 .mcs-film-title {
+  text-decoration: none;
   transition: color 0.3s ease; /* Hiệu ứng mượt mà khi thay đổi màu */
 }
 
@@ -240,22 +240,25 @@
 }
 
 .mcs-film-detail:hover img {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Đổ bóng */
   filter: brightness(150%); /* Tăng độ sáng của ảnh khi hover */
 }
 
 .mcs-film-title:hover + .mcs-film-img {
   transform: translateY(-10px); /* Di chuyển ảnh lên trên một chút khi hover */
-  filter: brightness(150%); /* Tăng độ sáng của ảnh khi hover */
+  filter: brightness(150%);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Đổ bóng */
+  /* Tăng độ sáng của ảnh khi hover */
 }
 
-.mcs-film-title:hover{
+.mcs-film-title:hover {
   color: yellow; /* Chuyển màu chữ sang màu vàng khi hover */
 }
 
 .trailer-ticket-cs {
   position: absolute;
   display: flex;
-  margin-top: 510px;
+  margin-top: 530px;
 }
 
 .trailer-cs {
@@ -286,10 +289,10 @@
 .ticket-text-cs:hover {
   border-color: #4E4AB0; /* Chuyển màu border khi hover */
   background-color: #4E4AB0; /* Chuyển màu background khi hover */
-  color: white; /* Chuyển màu chữ thành màu trắng khi hover */
+  color: white;
+  cursor: pointer;
 }
 
-  
 .chevron-button-cs {
   color: white;
   margin-top: 200px;
@@ -340,5 +343,60 @@
 }
 
 .Link {
+  text-decoration: none;
+}
+
+/*Admin*/
+.admin-function {
+  display: flex;
+  position: absolute;
+  top: 120%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.delete-button,
+.edit-button {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 7px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-right: 10px;
+  margin-left: 20px;
+  font-weight: 700;
+}
+
+.edit-button {
+  background-color: orange;
+  text-decoration: none;
+}
+
+/* Coming soon Admin */
+.admin-function-cs {
+  display: flex;
+  justify-content: center; /* Canh giữa các nút theo chiều ngang */
+  position: relative;
+  top: 5%; /* Điều chỉnh giá trị top để di chuyển các nút xuống */
+}
+
+
+.delete-button-cs,
+.edit-button-cs {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 7px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 0 10px; /* Khoảng cách đều giữa các nút */
+  font-weight: 700;
+}
+
+.edit-button-cs {
+  background-color: orange;
   text-decoration: none;
 }

@@ -479,7 +479,7 @@ function FilmDetail() {
             <span style={{ color: "white", marginLeft: 15, fontSize: 20 }}>
               {film.type}
             </span>
-            <span className="rating-ave">{averageRating} <Star/></span>
+            <span className="rating-ave">{averageRating} <Star style={{ color: 'yellow', fill: 'yellow', marginBottom:'9px' }}/></span>
           </div>
           <div style={{ marginTop: 10 }}>
             <Clock size={30} color="yellow" />
@@ -897,7 +897,7 @@ function FilmDetail() {
             <div className="comment-name">{comment.name}</div>
             <div className="comment-stars">
               {[...Array(comment.star)].map((_, i) => (
-                <Star key={i} size={20} style={{ color: 'yellow' }} />
+                <Star key={i} size={20} style={{ color: 'yellow', fill:'yellow' }} />
               ))}
             </div>
           </div>

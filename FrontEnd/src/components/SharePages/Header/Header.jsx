@@ -13,6 +13,18 @@ function Header() {
   const { user, updateUser } = useContext(UserContext);
   const navigate = useNavigate();
 
+  const userInfo1 = user && user.length > 0 ? user[0] : null;
+  const [isAdmin1, setIsAdmin1] = useState(false);
+
+  useEffect(() => {
+      if (userInfo1 && userInfo1.role === "admin") {
+          setIsAdmin1(true);
+      } else {
+          setIsAdmin1(false);
+      }
+  }, [userInfo1]);
+  console.log(isAdmin1);
+
   const handleLogoClick = () => {
     window.scrollTo(0, 0); // Cuộn về đầu trang
   };
@@ -164,6 +176,9 @@ const handleSearchResultClick = (idfilm) => {
           <MapPin style={{ marginRight: "10px" }} />
           Danh sách rạp
         </Link>
+        {isAdmin1 && (
+            <Link to="/filmadd" className="filmadd">Thêm phim</Link>
+        )}
         <div className="more-info">
           <Link to="/promotion" className="promotion">
             Khuyến mãi

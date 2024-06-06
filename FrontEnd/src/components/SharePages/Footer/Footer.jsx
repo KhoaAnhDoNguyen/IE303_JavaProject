@@ -46,7 +46,7 @@ function Footer() {
             </div>
 
             <div className='cinesta-footer'>
-                <div  className='cinesta-text-footer'>CINESTA</div>
+                <div  className='cinesta-text-footer'>MECINE</div>
                 <div  className='introduce-footer'>Giới thiệu</div>
                 <div  className='contact-footer'>Liên hệ</div>
                 <div  className='hiring-footer'>Tuyển dụng</div>

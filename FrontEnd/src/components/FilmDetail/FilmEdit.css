@@ -1,0 +1,125 @@
+.filmedit-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+  background: radial-gradient(
+    circle at 5% 5%, /* Vị trí xuất hiện của màu thứ nhất */
+    #5C3EA4 0%, /* Màu thứ hai */
+    #0F172A 50%, /* Màu thứ nhất */
+    #4159BF 110% /* Màu thứ ba */
+  );
+  height: 170vh;
+}
+
+.filmedit-all {
+  display: flex;
+  margin-top: 100px;
+}
+
+.filmedit-detail {
+  margin-left: 10px;
+  margin-top: 20px;
+  width: 100%;
+  max-width: 600px;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(106deg, #663399, #3366cc 102.69%);
+}
+
+.filmedit-detail form {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+.filmedit-detail label {
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: yellow;
+}
+
+.filmedit-detail input[type="text"],
+.filmedit-detail textarea[name="content"] {
+  width: calc(100% - 10px); /* Đảm bảo chiều rộng của input cùng nhau và dài ra một chút */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 3px;
+  font-size: 16px;
+  box-sizing: border-box; /* Tính cả border và padding trong chiều rộng */
+}
+
+.filmedit-detail textarea[name="content"] {
+  height: 100px; /* Tăng chiều cao để dễ nhập liệu hơn */
+  resize: vertical; /* Cho phép người dùng thay đổi chiều cao */
+}
+
+.filmedit-detail button[type="submit"] {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.filmedit-detail button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+.filmdetail-image {
+  margin-top: 20px;
+}
+
+.preview-image {
+  display: flex;
+  position: relative;
+  width: auto; /* Độ rộng của ảnh phim */
+  height: 600px; /* Chiều cao tự động điều chỉnh để giữ tỷ lệ */
+  margin-top: 10px;
+  margin-right: 150px;
+}
+
+.custom-file-upload {
+  display: inline-block;
+  font-weight: bold;
+  color: white;
+  background-color: #3366cc;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-left: 100px;
+}
+
+.custom-file-upload input[type="file"] {
+  display: none;
+}
+
+
+.radio-group {
+  margin-top: 10px; /* Tạo khoảng cách giữa trạng thái và các nút radio */
+}
+
+.status-label {
+  display: block; /* Hiển thị trạng thái trên một dòng mới */
+  margin-bottom: 5px; /* Tạo khoảng cách giữa trạng thái và các nút radio */
+}
+
+.radio-buttons {
+  display: flex; /* Sắp xếp các nút radio theo chiều ngang */
+}
+
+.radio-buttons label {
+  margin-left: 80px;
+}
+
+/* Style cho các nút radio */
+.radio-buttons input[type="radio"] {
+  margin-right: 25px; /* Tạo khoảng cách giữa nút radio và văn bản */
+  margin-left: 5px;
+}
+

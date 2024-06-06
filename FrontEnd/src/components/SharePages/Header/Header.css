@@ -120,6 +120,7 @@
     margin-top: 25px;
     align-items: center;
     justify-content: space-between;
+    cursor: pointer;
   }
 
   .flag-text {
@@ -202,4 +203,16 @@
 
 .search-result-name {
   font-size: 14px;
+}
+
+.filmadd{
+  margin-left: 30px;
+  color: white;
+  cursor: pointer;
+}
+
+
+.filmadd:hover {
+  /* Màu chữ khi hover */
+  color: yellow;
 }

@@ -1,52 +1,63 @@
-import React, { useState, useEffect, useContext  } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Logic from "./LoginLogic";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
 import './Login.css';
 import UserContext from "./UserContext.jsx";
 
 function Login() {
     const navigate = useNavigate();
-    //const [user, setUser] = useState(null);
     const { updateUser } = useContext(UserContext);
     const [values, setValues] = useState({
         email: '',
         password: ''
     });
-
     const [errors, setErrors] = useState({});
 
     const handleInput = (event) => {
-        //console.log('Input changed:', event.target.name, event.target.value);
         setValues(prev => ({ ...prev, [event.target.name]: event.target.value }));
     }
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-            try {
-                const response = await axios.get(`http://localhost:8080/users/${values.email}/${values.password}`);
-                //console.log('API response:', response);
-                if (response.data.length > 0) {
-                    updateUser(response.data);
-                    //console.log('User data:', response.data);
-                    //alert('Đăng nhập thành công!');
-                    navigate('/');
-                } else {
-                    console.log('Login failed. No data returned.');
-                    alert('Đăng nhập thất bại. Vui lòng thử lại!');
-                    window.location.reload();
-                }
-            } catch (error) {
-                console.error('There was an error!', error);
-                alert('Đăng nhập thất bại. Vui lòng thử lại!');
+        try {
+            const response = await axios.get(`http://localhost:8080/users/${values.email}/${values.password}`);
+            if (response.data.length > 0) {
+                updateUser(response.data);
+                toast.success('Đăng nhập thành công!', {
+                    position: "top-center",
+                    autoClose: 500,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                    style: { width: '350px' },
+                    onClose: () => navigate('/')
+                });
+            } else {
+                toast.error('Đăng nhập thất bại. Vui lòng thử lại!', {
+                    position: "top-center",
+                    autoClose: 1000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                    style: { width: '350px' },
+                    onClose: () => window.location.reload()
+                });
             }
-
+        } catch (error) {
+            console.error('There was an error!', error);
+        }
     }
-
 
     const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
-            //console.log('Enter key pressed');
             handleSubmit(event);
         }
     }
@@ -100,6 +111,9 @@ function Login() {
                     </Link>
                 </form>
             </div>
+
+            {/* ToastContainer for notifications */}
+            <ToastContainer />
         </div>
     );
 }
