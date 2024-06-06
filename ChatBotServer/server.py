@@ -6,7 +6,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Khởi tạo API key
-openai.api_key = "sk-proj-CawBzx6SmdOFUIGCWt3UT3BlbkFJcA4xsDdlDrn9fM67IOQ2"
+openai.api_key = ""
 #"Because of Information Security, we will not show the key here. If you wanna try, please contact with Anh Khoa. Thank you!"
 
 @app.route("/chat", methods=["POST"])
