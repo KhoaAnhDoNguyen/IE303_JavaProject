@@ -3,12 +3,12 @@ package com.ie303project.fullstackbackend.controller;
 import com.ie303project.fullstackbackend.exception.FilmNotFoundException;
 import com.ie303project.fullstackbackend.model.Film;
 import com.ie303project.fullstackbackend.repository.FilmRepository;
-import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.management.Query;
 import java.util.List;
+import java.util.Optional;
+
 @RestController
 @CrossOrigin("http://localhost:5173")
 public class FilmController {
@@ -39,6 +39,26 @@ public class FilmController {
     @GetMapping("/films/status/0")
     public List<Film> getFilmsWithStatusZero() {
         return filmRepository.findByStatus(0);
+    }
+
+    @PutMapping("/film/{IDFilm}")
+    Optional<Film> updateFilm(@RequestBody Film newFilm, @PathVariable Long IDFilm) {
+        return filmRepository.findById(IDFilm)
+                .map(film -> {
+                    film.setFilmName(newFilm.getFilmName());
+                    film.setType(newFilm.getType());
+                    film.setTime(newFilm.getTime());
+                    film.setCountry(newFilm.getCountry());
+                    film.setObject(newFilm.getObject());
+                    film.setDirector(newFilm.getDirector());
+                    film.setActor(newFilm.getActor());
+                    film.setPremiere(newFilm.getPremiere());
+                    film.setContent(newFilm.getContent());
+                    film.setStatus(newFilm.getStatus());
+                    film.setImage(newFilm.getImage());
+                    film.setDemo(newFilm.getDemo());
+                    return filmRepository.save(film);
+                });
     }
 
     @DeleteMapping("/film/{IDFilm}")
