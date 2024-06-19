@@ -369,7 +369,20 @@ function FilmDetail() {
           const emailData = {
             email: userInfo.email,  // Giả sử email người dùng có sẵn trong userInfo
             seatName: selectedSeat,  // Giả sử selectedSeat là tên ghế
-            message: "Cảm ơn bạn đã đặt vé!"  // Thông điệp tùy chỉnh
+            
+            filmName: film.filmName,
+            namecinema: selectedCinemaInfo.name_cinema,
+            address: selectedCinemaInfo.address,
+            room: selectedCinemaInfo.room,
+            timeshow: selectedShowtimeInfo.time_show,
+            dayshow: selectedShowtimeInfo.day_show,
+            dateshow: selectedShowtimeInfo.date_show,
+            yearshow: selectedShowtimeInfo.year_show,
+            typeticket: selectedTicketInfo.type_ticket,
+            nameticket : selectedTicketInfo.name_ticket,
+            price: selectedTicketInfo.price,
+
+            message: "Thay mặt công ty TNHH MECINE. Cảm ơn bạn đã đặt vé!"  // Thông điệp tùy chỉnh
           };
   
           await axios.post('http://localhost:8080/send-email', emailData);
@@ -512,7 +525,7 @@ function FilmDetail() {
           <div style={{ marginTop: 7, color: "white", fontSize: 16 }}>
             Đạo diễn: {film.director}
           </div>
-          <div style={{ marginTop: 7, color: "white", fontSize: 16 }}>
+          <div style={{ marginTop: 7, color: "white", fontSize: 16, marginRight:150 }}>
             Diễn viên: {film.actor}
           </div>
           <div style={{ marginTop: 7, color: "white", fontSize: 16 }}>
@@ -528,7 +541,7 @@ function FilmDetail() {
           >
             NỘI DUNG PHIM
           </div>
-          <div style={{ marginTop: 7, color: "white", fontSize: 16 }}>
+          <div style={{ marginTop: 7, color: "white", fontSize: 16, marginRight:150 }}>
             {film.content}
           </div>
           <div

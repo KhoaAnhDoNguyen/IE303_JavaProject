@@ -3,7 +3,8 @@
 function SignUp_Logic(values) {
     let error = {}
     const email_pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const password_pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{8,}$/;
+    //const password_pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{8,}$/;
+    const password_pattern = /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
     /* Email Check */
     if(values.email === "") {
         error.email = "Email không được để trống !"
@@ -34,7 +35,7 @@ function SignUp_Logic(values) {
         error.password = "Mật khẩu không được để trống"
     }
     else if(!password_pattern.test(values.password)) {
-        error.password = "Mật khẩu không hợp lệ"
+        error.password = "Mật khẩu phải có ít nhất 6 ký tự, bao gồm ký tự đặt biệt, số và chữ"
     }
     else {
         error.password = ""
@@ -44,7 +45,7 @@ function SignUp_Logic(values) {
         error.confirm_password = "Xác nhận mật khẩu không được để trống"
     }
     else if(!password_pattern.test(values.confirm_password)) {
-        error.confirm_password = "Xác nhận mật khẩu không hợp lệ"
+        error.confirm_password = "Xác nhận mật khẩu phải có ít nhất 6 ký tự, bao gồm ký tự đặt biệt, số và chữ"
     }
     else if(values.password.toString() !== values.confirm_password.toString()) {
         error.confirm_password = "Xác nhận mật khẩu không khớp"

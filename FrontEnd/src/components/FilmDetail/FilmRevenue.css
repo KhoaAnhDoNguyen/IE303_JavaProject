@@ -1,0 +1,58 @@
+.filmrevenue-container {
+    min-height: 100vh;
+    margin-top: 0; /* Đặt giá trị margin-top là 0 */
+}
+
+.filmrevenue-detail {
+    background: radial-gradient(
+        circle at 5% 5%, /* Vị trí xuất hiện của màu thứ nhất */
+        #5C3EA4 0%, /* Màu thứ hai */
+        #0F172A 50%, /* Màu thứ nhất */
+        #4159BF 110% /* Màu thứ ba */
+    );
+    height: 110vh;
+}
+
+.filmrevenue-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 190px;
+    padding-top: 200px;
+}
+
+.filmrevenue-title {
+    font-size: 40px;
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.filmrevenue-content {
+    width: 75%;
+    margin-top: 35px;
+    margin-left: 190px;
+}
+
+.filmrevenue-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.film-name {
+    font-size: 20px;
+    color: white;
+}
+
+.total-revenue {
+    font-size: 18px;
+    color: white;
+}

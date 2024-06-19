@@ -9,12 +9,12 @@
     #0F172A 50%, /* Màu thứ nhất */
     #4159BF 110% /* Màu thứ ba */
   );
-  height: 170vh;
+  height: 180vh;
 }
 
 .filmedit-all {
   display: flex;
-  margin-top: 100px;
+  margin-top: 130px;
 }
 
 .filmedit-detail {
@@ -26,6 +26,14 @@
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background: linear-gradient(106deg, #663399, #3366cc 102.69%);
+}
+
+.filmedit-text{
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  font-size: 30px;
+  margin-bottom: 10px;
 }
 
 .filmedit-detail form {

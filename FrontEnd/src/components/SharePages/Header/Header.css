@@ -98,7 +98,8 @@
     color: white; /* Màu chữ mặc định */
     transition: color 0.3s; /* Hiệu ứng chuyển đổi màu trong 0.3s */
     text-decoration: none; /* Loại bỏ gạch chân */
-    margin-top: 10px;
+    margin-top: 13px;
+    font-family: 'Josefin-Variable', sans-serif;  
   }
   
   .login-link:hover {
@@ -144,6 +145,7 @@
     align-items: center;
     justify-content: space-between;
     color: white; 
+    font-family: 'Josefin-Variable', sans-serif;
 }
 
 .cinema:hover {
@@ -161,6 +163,7 @@
   color: white;
   margin-left: 35px; /* Tạo khoảng cách giữa các liên kết */
   margin-top: -5px; /* Di chuyển các mục lên một chút */
+  font-family: 'Josefin-Variable', sans-serif;
 }
 
 .promotion:hover,
@@ -209,10 +212,24 @@
   margin-left: 30px;
   color: white;
   cursor: pointer;
+  font-family: 'Josefin-Variable', sans-serif;
 }
 
 
 .filmadd:hover {
+  /* Màu chữ khi hover */
+  color: yellow;
+}
+
+.filmrevenue{
+  margin-left: 30px;
+  color: white;
+  cursor: pointer;
+  font-family: 'Josefin-Variable', sans-serif;
+}
+
+
+.filmrevenue:hover {
   /* Màu chữ khi hover */
   color: yellow;
 }

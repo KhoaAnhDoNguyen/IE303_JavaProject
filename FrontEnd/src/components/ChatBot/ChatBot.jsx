@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './ChatBot.css';
 
@@ -6,6 +6,12 @@ import './ChatBot.css';
 const ChatBot = ({ onClose }) => {
   const [message, setMessage] = useState('');
   const [chatHistory, setChatHistory] = useState([]);
+
+  useEffect(() => {
+    // Thêm thông điệp chào mừng khi chatbot được mở
+    const welcomeMessage = { role: 'bot', content: 'Xin chào tôi là ChatBot của Anh Khoa, bạn muốn tìm kiếm phim theo thể loại nào nhỉ?' };
+    setChatHistory([welcomeMessage]);
+  }, []);
 
   const sendMessage = async () => {
     try {

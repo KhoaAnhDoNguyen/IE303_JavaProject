@@ -17,7 +17,10 @@ public class BookingController {
     {
         return bookingRepository.save(newBooking);
     }
-
+    @GetMapping("/bookings")
+    public List<Booking> getAllBookings() {
+        return bookingRepository.findAll();
+    }
     @GetMapping("/bookings/{idFilm}/{idShowtime}/{idCinema}/{idSeat}")
     public List<Booking> getBookingsByMultipleParams(
             @PathVariable Long idFilm,

@@ -101,7 +101,7 @@ const handleSearchResultClick = (idfilm) => {
         <div className="search-bar">
           <input
               type="text"
-              placeholder="Tìm phim, rạp, vé, tin tức..."
+              placeholder="Tìm phim bạn yêu thích..."
               className="search-input"
               value={searchQuery}
               onChange={handleSearchInputChange}
@@ -173,11 +173,14 @@ const handleSearchResultClick = (idfilm) => {
 
       <div className="second-part">
         <Link to="/cinema" className="cinema">
-          <MapPin style={{ marginRight: "10px" }} />
+          <MapPin style={{ marginRight: "10px", marginTop:'-10px' }} />
           Danh sách rạp
         </Link>
         {isAdmin1 && (
             <Link to="/filmadd" className="filmadd">Thêm phim</Link>
+        )}
+        {isAdmin1 && (
+            <Link to="/filmrevenue" className="filmrevenue">Doanh thu phim</Link>
         )}
         <div className="more-info">
           <Link to="/promotion" className="promotion">

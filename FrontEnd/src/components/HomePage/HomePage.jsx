@@ -290,6 +290,16 @@ function HomePage() {
                             />
                         </div>
                     </div>
+
+                    <div className="promotion-part">
+                        <div className="promotion-text">KHUYẾN MÃI</div>
+                        <div className="promotion-pic">
+                            <img src="/src/assets/Advertisement/ad1.jpg" alt="image1" className="img-fluid-pro"/>
+                            <img src="/src/assets/Advertisement/ad2.jpg" alt="image2" className="img-fluid-pro"/>
+                            <img src="/src/assets/Advertisement/ad3.jpg" alt="image3" className="img-fluid-pro"/>
+                            <img src="/src/assets/Advertisement/ad4.jpg" alt="image4" className="img-fluid-pro"/>
+                        </div>
+                    </div>
                 </div>
                 <div className="membership">
                     <img
@@ -314,6 +324,7 @@ function HomePage() {
                     </div>
                 </div>
             </div>
+
             <Footer />
         </div>
     );

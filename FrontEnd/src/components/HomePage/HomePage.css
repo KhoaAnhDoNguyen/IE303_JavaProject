@@ -71,6 +71,7 @@
 }
 
 .ms-film-title {
+  font-family: 'Josefin-Variable';
   text-align: center; /* Căn giữa văn bản */
   margin-top: 20px; /* Khoảng cách giữa ảnh và chữ */
   color: white; /* Màu chữ trắng */
@@ -140,12 +141,13 @@
 }
 
 .ticket-text {
+  font-family: 'Josefin-Variable';
   border-radius: 5px; /* Bo tròn góc */
   border: 2px solid yellow; /* Thiết lập border cho chữ */
   background-color: yellow;
   color: black; /* Thiết lập màu chữ là màu đen */
   padding: 5px 10px; /* Thêm padding để tạo khoảng cách giữa chữ và border */
-  transition: border-color 0.3s, background-color 0.3s; /* Hiệu ứng chuyển màu */
+  transition: border-color 0.5s, background-color 0.5s; /* Hiệu ứng chuyển màu */
   font-weight: bold;
 }
 
@@ -209,6 +211,7 @@
 }
 
 .mcs-film-title {
+  font-family: 'Josefin-Variable';
   text-align: center; /* Căn giữa văn bản */
   margin-top: 20px; /* Khoảng cách giữa ảnh và chữ */
   color: white; /* Màu chữ trắng */
@@ -277,12 +280,13 @@
 }
 
 .ticket-text-cs {
+  font-family: 'Josefin-Variable';
   border-radius: 5px; /* Bo tròn góc */
   border: 2px solid yellow; /* Thiết lập border cho chữ */
   background-color: yellow;
   color: black; /* Thiết lập màu chữ là màu đen */
   padding: 5px 10px; /* Thêm padding để tạo khoảng cách giữa chữ và border */
-  transition: border-color 0.3s, background-color 0.3s; /* Hiệu ứng chuyển màu */
+  transition: border-color 0.5s, background-color 0.5s; /* Hiệu ứng chuyển màu */
   font-weight: bold;
 }
 
@@ -349,14 +353,22 @@
 /*Admin*/
 .admin-function {
   display: flex;
+  justify-content: center; /* Canh giữa các nút theo chiều ngang */
+  align-items: center; /* Canh giữa các nút theo chiều dọc */
   position: absolute;
   top: 120%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
 }
+
+.admin-function > * {
+  margin-right: 10px; /* Khoảng cách giữa các phần tử */
+}
+
 
 .delete-button,
 .edit-button {
+  font-family: 'Josefin-Variable';
   background-color: red;
   color: white;
   border: none;
@@ -385,6 +397,7 @@
 
 .delete-button-cs,
 .edit-button-cs {
+  font-family: 'Josefin-Variable';
   background-color: red;
   color: white;
   border: none;
@@ -399,4 +412,28 @@
 .edit-button-cs {
   background-color: orange;
   text-decoration: none;
+}
+
+.promotion-text{
+  display: flex;
+  flex-direction: column; /* Hiển thị các phần tử con theo chiều dọc */
+  align-items: center;
+  justify-content: center;
+  color: white; /* Màu trắng */
+  font-size: 33px; /* Kích thước phóng to */
+  font-weight: bold; /* In đậm */
+}
+
+.promotion-pic{
+  display: flex;
+  margin-top: 50px;
+  margin-left: 180px;
+  margin-right: 150px;
+}
+
+.promotion-pic img {
+  width: 250px; /* Độ rộng của ảnh phim */
+  height: auto; /* Chiều cao tự động điều chỉnh để giữ tỷ lệ */
+  margin-right: 50px;
+  margin-bottom: 100px;
 }

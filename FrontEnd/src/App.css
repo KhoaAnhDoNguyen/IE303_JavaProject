@@ -25,3 +25,19 @@ body {
   height: auto;
   filter: invert(1); /* Đảo ngược màu sắc của hình ảnh (nếu cần) */
 }
+
+
+@font-face {
+  font-family: 'Anton';
+  src: url('/Anton-Regular.ttf'); /* Kiểm tra đường dẫn này */
+}
+
+@font-face {
+  font-family: 'Josefin-Variable';
+  src: url('/JosefinSans-VariableFont_wght.ttf');
+}
+
+@font-face {
+  font-family: 'Antonio';
+  src: url('/Antonio-VariableFont_wght.ttf');
+}

@@ -81,6 +81,7 @@ function FilmAdd() {
           </label>
         </div>
         <div className="filmadd-detail">
+          <div className="filmadd-text">Thêm phim</div>
           <form onSubmit={handleSubmit}>
             <label>
               Tên phim:

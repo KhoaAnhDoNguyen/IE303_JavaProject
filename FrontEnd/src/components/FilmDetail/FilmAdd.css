@@ -9,7 +9,7 @@
       #0F172A 50%, /* Màu thứ nhất */
       #4159BF 110% /* Màu thứ ba */
     );
-    height: 170vh;
+    height: 180vh;
   }
   
   .filmadd-all {
@@ -28,6 +28,14 @@
     background: linear-gradient(106deg, #663399, #3366cc 102.69%);
   }
   
+  .filmadd-text{
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom: 10px;
+  }
+
   .filmadd-detail form {
     width: 500px;
     display: flex;
@@ -85,15 +93,15 @@
   }
   
   .custom-file-upload-add {
-    display: inline-block;
+    display: flex;
+    position:absolute;
     font-weight: bold;
     color: white;
     background-color: #3366cc;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 5px;
-    margin-left: 150px;
+    margin-left: 10px;
   }
   
   .custom-file-upload-add input[type="file"] {

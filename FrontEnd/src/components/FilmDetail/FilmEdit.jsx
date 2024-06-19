@@ -109,6 +109,7 @@ function FilmEdit() {
           </label>
         </div>
         <div className="filmedit-detail">
+          <div className="filmedit-text">Chỉnh sửa thông tin phim</div>
           <form onSubmit={handleSubmit}>
             <label>
               Tên phim:

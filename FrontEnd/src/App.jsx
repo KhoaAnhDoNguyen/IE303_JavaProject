@@ -5,6 +5,7 @@ import HomePage from './components/HomePage/HomePage.jsx';
 import FilmDetail from './components/FilmDetail/FilmDetail.jsx';
 import FilmEdit from './components/FilmDetail/FilmEdit.jsx';
 import FilmAdd from './components/FilmDetail/FilmAdd.jsx';
+import FilmRevenue from './components/FilmDetail/FilmRevenue.jsx';
 import Login from './components/User/Login.jsx';
 import SignUp from './components/User/SignUp.jsx';
 import ChatBot from './components/ChatBot/ChatBot.jsx';
@@ -36,6 +37,7 @@ function AppContent() {
           <Route path='/' element={<HomePage />} />
           <Route path='/filmdetail/:idfilm' element={<FilmDetail />} />
           <Route path='/filmedit/:idfilm' element={<FilmEdit />} />
+          <Route path='filmrevenue' element={<FilmRevenue/>}/>
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<SignUp />} />
           <Route path='/filmadd' element={<FilmAdd />} />
