@@ -34,3 +34,7 @@ This project is designed and built a movie tickets booking website (named MECINE
 1. Harvey Deitel (2014). Java™ How to Program (Sixth Edition). Prentice Hall.
 2. Kevin Mukhar, Chris Zelenak, James L. Weaver, Jim Crume (2005). Beginning Java EE 5: From Novice to Professional. Apress.
 3. The Java EE 5 Tutorial: http://java.sun.com/javaee/5/docs/tutorial/doc/
+
+SOFTWARE OR TOOLS FOR PRACTICE
+NetBeans (2015). NetBeans IDE from version 8.0.
+MySQL or Microsoft SQL.
