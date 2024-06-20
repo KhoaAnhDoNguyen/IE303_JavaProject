@@ -5,5 +5,5 @@
 | Student ID | Full name |Tasks|
 | --- | ----------- |--------------------|
 | 21522219 | Do Nguyen Anh Khoa|Leader
-| 21522019 | Au Truong Giang|Member
-| 21522774 | Nguyen Khanh Tuong|Member
+| 21522019 | Au Truong Giang|
+| 21522774 | Nguyen Khanh Tuong|
