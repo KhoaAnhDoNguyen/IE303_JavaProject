@@ -25,11 +25,12 @@ This project is designed and built a movie tickets booking website (named MECINE
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![ChatGPT](https://img.shields.io/badge/chatGPT-74aa9c?style=for-the-badge&logo=openai&logoColor=white)
 
-STUDY MATERIALS AND REFERENCES
-Textbooks
-Herbert Schildt (2011). Java The Complete Reference (8th Edition). McGraw-Hill.
-Eric Jendrock, Ricardo Cervera-Navarro, Ian Evans, Kim Haase, William Markito (2014). The Java EE 7 Tutorial. Oracle.
-References
-Harvey Deitel (2014). Java™ How to Program (Sixth Edition). Prentice Hall.
-Kevin Mukhar, Chris Zelenak, James L. Weaver, Jim Crume (2005). Beginning Java EE 5: From Novice to Professional. Apress.
-The Java EE 5 Tutorial: http://java.sun.com/javaee/5/docs/tutorial/doc/
+## STUDY MATERIALS AND REFERENCES
+### Textbooks
+1. Herbert Schildt (2011). Java The Complete Reference (8th Edition). McGraw-Hill.
+2. Eric Jendrock, Ricardo Cervera-Navarro, Ian Evans, Kim Haase, William Markito (2014). The Java EE 7 Tutorial. Oracle.
+
+### References
+1. Harvey Deitel (2014). Java™ How to Program (Sixth Edition). Prentice Hall.
+2. Kevin Mukhar, Chris Zelenak, James L. Weaver, Jim Crume (2005). Beginning Java EE 5: From Novice to Professional. Apress.
+3. The Java EE 5 Tutorial: http://java.sun.com/javaee/5/docs/tutorial/doc/
