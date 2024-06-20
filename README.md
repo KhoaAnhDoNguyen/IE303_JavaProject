@@ -36,5 +36,5 @@ This project is designed and built a movie tickets booking website (named MECINE
 3. The Java EE 5 Tutorial: http://java.sun.com/javaee/5/docs/tutorial/doc/
 
 ## SOFTWARE OR TOOLS FOR PRACTICE
-1. NetBeans (2015). NetBeans IDE from version 8.0.
+1. IntelliJ IDEA – the Leading Java and Kotlin IDE - JetBrains.
 2. MySQL or Microsoft SQL.
