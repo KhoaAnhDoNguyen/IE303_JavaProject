@@ -35,6 +35,6 @@ This project is designed and built a movie tickets booking website (named MECINE
 2. Kevin Mukhar, Chris Zelenak, James L. Weaver, Jim Crume (2005). Beginning Java EE 5: From Novice to Professional. Apress.
 3. The Java EE 5 Tutorial: http://java.sun.com/javaee/5/docs/tutorial/doc/
 
-## SOFTWARE OR TOOLS FOR PRACTICE
+## SOFTWARE OR TOOLS
 1. IntelliJ IDEA – the Leading Java and Kotlin IDE - JetBrains.
-2. MySQL or Microsoft SQL.
+2. MySQL.
