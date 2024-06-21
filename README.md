@@ -9,7 +9,7 @@ This project is designed and built a movie tickets booking website (named MECINE
 | 21522019 | Au Truong Giang|
 | 21522774 | Nguyen Khanh Tuong|
 
-## Technology
+## Technologies
 ### Front-end
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
