@@ -1,4 +1,5 @@
 # IE303 - Java Project
+Term 2 (2023 - 2024).
 
 This project is designed and built a movie tickets booking website (named MECINE) using ReactJS for the Front-end, Back-end using the Spring Boot framework and integrating Chatbot (API key ChatGPT 3.5).
 
