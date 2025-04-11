@@ -6,9 +6,9 @@ This project is designed and built a movie tickets booking website (named MECINE
 ## Members
 | Student ID | Full name |Role|
 | --- | ----------- |--------------------|
-| 21522219 | Do Nguyen Anh Khoa|Leader
-| 21522019 | Au Truong Giang|
-| 21522774 | Nguyen Khanh Tuong|
+| 21522219 | Khoa Do Nguyen Anh|Leader, BE Developer, AI Developer
+| 21522019 | Giang Au Truong|FE Developer
+| 21522774 | Tuong Nguyen Khanh|BE Developer
 
 ## Technologies
 ### Front-end
